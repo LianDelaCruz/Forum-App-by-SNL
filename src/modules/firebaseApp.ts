@@ -2,6 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database"; 
+import { onValue, ref, push, remove } from "firebase/database"; 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,3 +18,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app); 
+
+const dbForum = ref(db, '/SNLApp/Forum/'); 
+const dbUser = ref(db, '/SNLApp/User/'); 
+
+
+export function onvalueFunc() {
+    onValue(dbForum, snapshot => {
+        const forum = snapshot.val(); 
+        console.log(forum); 
+    })
+}
+
+export function user() {
+    onValue(dbUser, snapshot => {
+        const user = snapshot.val();
+        console.log(user); 
+    })
+}

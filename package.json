@@ -20,7 +20,8 @@
   "homepage": "https://github.com/Takikato09/FE21-JS2-slutprojekt-SNL#readme",
   "devDependencies": {
     "del-cli": "^4.0.1",
-    "parcel": "^2.4.0"
+    "parcel": "^2.4.0",
+    "process": "^0.11.10"
   },
   "browserslist": [
     "Firefox>95",
