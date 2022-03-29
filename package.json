@@ -25,5 +25,8 @@
   "browserslist": [
     "Firefox>95",
     "Chrome>95"
-  ]
+  ],
+  "dependencies": {
+    "firebase": "^9.6.10"
+  }
 }
