@@ -5,7 +5,7 @@ class User {
         public readonly username: string,
         private password: any,
         public readonly bio: string,
-        public readonly image: URL // How do we declare the image in a class constructor? 
+        public readonly img: URL 
     )
 {}
 
