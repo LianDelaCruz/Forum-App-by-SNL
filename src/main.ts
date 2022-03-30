@@ -3,5 +3,5 @@ import { db, getBeerInDb, getFoodInDb, getWineInDb, user } from "./modules/fireb
 
 getBeerInDb();
 getFoodInDb();
-getWineInDb()
+getWineInDb(console.log)
 user(); 

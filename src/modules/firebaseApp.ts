@@ -3,6 +3,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database"; 
 import { onValue, ref, push, remove } from "firebase/database"; 
+import { Message, Topic, Forum } from "./forumClass";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -40,10 +41,20 @@ export function getFoodInDb() {
     })
 }
 
-export function getWineInDb() {
+export function getWineInDb(callback: (topic:Topic) => void) {
     onValue(dbWineForum, snapshot => {
-        const wineForum = snapshot.val();
-        console.log(wineForum);
+        const messagesData = snapshot.val();
+        const wineMessages = [];
+
+        for(const key in messagesData ) {
+            const message = new Message (
+                key,
+                messagesData[key].username,
+                messagesData[key].message)
+            wineMessages.push(message)
+        }
+        const wineForum = new Topic("wine", wineMessages);//construct the class with data from database
+        callback(wineForum); //call callback with the Topic-class
     })
 }
 
