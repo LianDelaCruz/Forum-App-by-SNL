@@ -16,8 +16,6 @@ public createUserSignUp(): void {
 }
 
 public userLogIn(): void {
-
-
     // When user is already signed up, compare username + password to already existing id in database and let user log in if it matches
     // If it can't find a matching user, show message or alert that user can't be found
 }
