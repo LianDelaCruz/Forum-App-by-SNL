@@ -1,5 +1,7 @@
 import { onValue, ref, push, remove } from "firebase/database";
-import { db, onvalueFunc, user } from "./modules/firebaseApp"; 
+import { db, getBeerInDb, getFoodInDb, getWineInDb, user } from "./modules/firebaseApp"; 
 
-onvalueFunc(); 
+getBeerInDb();
+getFoodInDb();
+getWineInDb()
 user(); 
