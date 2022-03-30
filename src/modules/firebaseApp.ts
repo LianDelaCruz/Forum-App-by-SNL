@@ -60,10 +60,23 @@ export function getWineInDb(callback: (topic:Topic) => void) {
 
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 
+const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
+const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
-export function user() {
+let inputUserName = logInUser.value;
+let inputPassword = logInPassword.value; // Maybe not needed
+
+export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
-        const user = snapshot.val();
-        console.log(user); 
+        const userData = snapshot.val();
+        console.log(logIn); 
+        let result = false;
+        for(const key in userData) {
+            if(userData[key].username == username && userData[key].password == password) {
+                 result = userData[key];
+                 console.log('Log in was successful.');
+            }
+        }
+        callback(result)
     })
 }
