@@ -3,7 +3,8 @@ import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn } from "./modules/fire
 
 getBeerInDb();
 getFoodInDb();
-getWineInDb()
+getWineInDb(console.log)
+user(); 
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
@@ -28,7 +29,3 @@ function onLoginFinish(result: false | User) {
     // Sara puts some code in here later
 
 }
-
-
-
-
