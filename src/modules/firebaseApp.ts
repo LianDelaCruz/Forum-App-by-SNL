@@ -19,16 +19,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app); 
 
-const dbForum = ref(db, '/SNLApp/Forum/'); 
-const dbUser = ref(db, '/SNLApp/User/'); 
 
 
-export function onvalueFunc() {
-    onValue(dbForum, snapshot => {
-        const forum = snapshot.val(); 
-        console.log(forum); 
+//FORUM topics
+const dbBeerForum = ref(db, '/SNLApp/Forum/beer/');
+const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
+const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
+
+
+export function getBeerInDb() {
+    onValue(dbBeerForum, snapshot => {
+        const beerForum = snapshot.val(); 
+        console.log(beerForum); 
     })
 }
+export function getFoodInDb() {
+    onValue(dbFoodForum, snapshot => {
+        const foodForum = snapshot.val(); 
+        console.log(foodForum); 
+    })
+}
+
+export function getWineInDb() {
+    onValue(dbWineForum, snapshot => {
+        const wineForum = snapshot.val();
+        console.log(wineForum);
+    })
+}
+
+//USER 
+const dbUser = ref(db, '/SNLApp/User/'); 
 
 export function user() {
     onValue(dbUser, snapshot => {
