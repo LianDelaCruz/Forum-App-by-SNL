@@ -5,7 +5,7 @@ class User {
         public readonly username: string,
         private password: any,
         public readonly bio: string,
-        public readonly img: URL 
+        public readonly img: string 
     )
 {}
 
@@ -23,3 +23,5 @@ public userLogIn(): void {
 }
 
 }
+
+export { User };

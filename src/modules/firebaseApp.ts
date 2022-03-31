@@ -1,9 +1,9 @@
 // Initialize firebase app here
 
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database"; 
-import { onValue, ref, push, remove } from "firebase/database"; 
+import { getDatabase, update, onValue, ref, push, remove } from "firebase/database"; 
 import { Message, Topic, Forum } from "./forumClass";
+import { User } from "./userClass";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -78,7 +78,7 @@ export function getWineInDb(callback: (topic:Topic) => void) {
     })
 }
 
-//USER 
+//Login existing user
 const dbUser = ref(db, '/SNLApp/User/'); 
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
@@ -97,6 +97,54 @@ export function logIn(username, password, callback): void {
                  console.log('Log in was successful.');
             }
         }
-        callback(result)
+        callback(result) // Put an alert or message later for user to know if login fails
     })
 }
+
+// Create new user (sign-up)
+const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
+
+let users: User[] = [];
+
+export function createNewUser(): void {
+    onValue(dbUser, snapshot => {
+        const newUserData = snapshot.val();
+
+        users = [];
+
+        for(const key in newUserData) {
+            users.push(new User(key, newUserData[key].username, newUserData[key].password, newUserData[key].bio, newUserData[key].img));
+        }
+    })
+
+    createUserBtn.addEventListener('click', (e) => {
+        const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
+        const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
+        const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
+        const newProfileImg: HTMLInputElement = document.querySelector("#sign-up-img");
+        e.preventDefault();
+
+        const addNewUser = {
+            username: newUsername.value,
+            password: newPassword.value,
+            bio: newBio.value,
+            img: newProfileImg.value
+        }
+
+        newUsername.value = "";
+        newPassword.value = "";
+        newBio.value = "";
+        newProfileImg.value = "";
+
+        const newKey:string = push(dbUser).key;
+        const newUserProfile = {};
+        newUserProfile[newKey] = addNewUser;
+
+        update(dbUser, newUserProfile);
+        console.log(addNewUser);
+    })
+
+}
+
+
+
