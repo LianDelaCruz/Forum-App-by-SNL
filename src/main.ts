@@ -2,8 +2,8 @@ import { onValue, ref, push, remove } from "firebase/database";
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn } from "./modules/firebaseApp"; 
 import { Profile } from "./modules/profileClass"; 
 
-getBeerInDb();
-getFoodInDb();
+getBeerInDb(console.log);
+getFoodInDb(console.log);
 getWineInDb(console.log)
 //user(); 
 

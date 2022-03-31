@@ -1,5 +1,6 @@
 
 import { Topic } from "./forumClass";
+import { getBeerInDb } from "./firebaseApp";
 
 // This is where we will create elements that will appear on our website
 
