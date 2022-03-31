@@ -1,10 +1,11 @@
 import { onValue, ref, push, remove } from "firebase/database";
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn } from "./modules/firebaseApp"; 
+import { Profile } from "./modules/profileClass"; 
 
 getBeerInDb();
 getFoodInDb();
 getWineInDb(console.log)
-user(); 
+//user(); 
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
@@ -25,7 +26,8 @@ logInBtn.addEventListener('click', (e) => {
 // When log in is successful
 function onLoginFinish(result: false | User) {
     console.log(result)
+    return result;   
 
-    // Sara puts some code in here later
+    // Sara puts some code in here later // from here call function that creates instans of class Profile?? 
 
 }
