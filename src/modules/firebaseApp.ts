@@ -28,16 +28,36 @@ const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
 const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
 
-export function getBeerInDb() {
+export function getBeerInDb(callback: (topic:Topic) => void) {
     onValue(dbBeerForum, snapshot => {
-        const beerForum = snapshot.val(); 
-        console.log(beerForum); 
+        const messagesData = snapshot.val(); 
+        const beerMessages = [];
+
+        for(const key in messagesData) {
+            const message = new Message (
+                key,
+                messagesData[key].username,
+                messagesData[key].message)
+            beerMessages.push(message)
+        }
+        const beerForum = new Topic("beer", beerMessages);
+        callback(beerForum);
     })
 }
-export function getFoodInDb() {
+export function getFoodInDb(callback: (topic:Topic) => void) {
     onValue(dbFoodForum, snapshot => {
-        const foodForum = snapshot.val(); 
-        console.log(foodForum); 
+        const messagesData = snapshot.val(); 
+        const foodMessages = [];
+
+        for(const key in messagesData) {
+            const message = new Message (
+                key,
+                messagesData[key].username,
+                messagesData[key].message)
+            foodMessages.push(message)
+        }
+        const foodForum = new Topic("food", foodMessages);
+        callback(foodForum);
     })
 }
 
