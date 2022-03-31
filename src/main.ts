@@ -1,11 +1,13 @@
 import { onValue, ref, push, remove } from "firebase/database";
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn } from "./modules/firebaseApp"; 
+import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser } from "./modules/firebaseApp"; 
 import { Profile } from "./modules/profileClass"; 
+import { User } from "./modules/userClass";
 
 getBeerInDb();
 getFoodInDb();
 getWineInDb(console.log)
-//user(); 
+createNewUser();
+console.log(createNewUser);
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
@@ -15,7 +17,7 @@ const logInBtn: HTMLButtonElement = document.querySelector('.log-in-btn');
 let inputUserName: String; 
 let inputPassword: String; 
 
-// Button for log in
+// Button for login
 logInBtn.addEventListener('click', (e) => {
     e.preventDefault();
     inputUserName = logInUser.value;
