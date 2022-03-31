@@ -1,7 +1,7 @@
 // Initialize firebase app here
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, update, onValue, ref, push, remove } from "firebase/database"; 
+import { getDatabase, update, onValue, ref, push, remove, get, child } from "firebase/database"; 
 import { Message, Topic, Forum } from "./forumClass";
 import { User } from "./userClass";
 
@@ -97,6 +97,8 @@ export function createNewUser(): void {
         }
     })
 
+    // When user clicks sign up-button the info is sent and stored in database
+    // Need to fix the image here (input placeholder for now)
     createUserBtn.addEventListener('click', (e) => {
         const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
@@ -111,17 +113,27 @@ export function createNewUser(): void {
             img: newProfileImg.value
         }
 
+        // Keep working on this (have tried several ways of comparing username but don't know how to)
+        get(child(dbUser, `/${newUsername.value}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log('This username is already taken');
+                return;
+            }
+            else { 
+            const newKey:string = push(dbUser).key;
+            const newUserProfile = {};
+            newUserProfile[newKey] = addNewUser;
+
+            update(dbUser, newUserProfile);
+            console.log(addNewUser);
+            }
+        })
+
         newUsername.value = "";
         newPassword.value = "";
         newBio.value = "";
         newProfileImg.value = "";
-
-        const newKey:string = push(dbUser).key;
-        const newUserProfile = {};
-        newUserProfile[newKey] = addNewUser;
-
-        update(dbUser, newUserProfile);
-        console.log(addNewUser);
+    
     })
 
 }
