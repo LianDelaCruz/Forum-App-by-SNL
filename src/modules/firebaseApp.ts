@@ -108,6 +108,8 @@ const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
 
 let users: User[] = [];
 
+let imgChosen = 'none';
+
 export function createNewUser(): void {
     onValue(dbUser, snapshot => {
         const newUserData = snapshot.val();
@@ -119,6 +121,17 @@ export function createNewUser(): void {
         }
     })
 
+       // Image buttons
+       const profileImg1: HTMLButtonElement = document.querySelector("#pic-1");
+       const profileImg2: HTMLButtonElement = document.querySelector("#pic-2");
+       const profileImg3: HTMLButtonElement = document.querySelector("#pic-3");
+
+       profileImg1.addEventListener('click', (e) => {
+           console.log(e);
+            imgChosen = 'String för bilden';
+           console.log(imgChosen);
+       })
+
     // When user clicks sign up-button the info is sent and stored in database
     // Need to fix the image here (input placeholder for now)
     createUserBtn.addEventListener('click', (e) => {
@@ -126,13 +139,14 @@ export function createNewUser(): void {
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
         const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
         const newProfileImg: HTMLInputElement = document.querySelector("#sign-up-img");
+
         e.preventDefault();
 
         const addNewUser = {
             username: newUsername.value,
             password: newPassword.value,
             bio: newBio.value,
-            img: newProfileImg.value
+            img: newProfileImg.value // Sätt imageChosen här
         }
 
         get(dbUser).then((snapshot) => {

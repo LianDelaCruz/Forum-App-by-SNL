@@ -10,3 +10,9 @@
 .forum-btns {
     padding: 5px;
 }
+
+/* Image-size on signup page */
+img {
+    max-width: 20vw;
+    max-height: 20vh;
+}
