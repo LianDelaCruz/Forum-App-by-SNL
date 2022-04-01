@@ -30,6 +30,7 @@ const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
 export function getBeerInDb(callback: (topic:Topic) => void) {
     onValue(dbBeerForum, snapshot => {
+      
         const messagesData = snapshot.val(); 
         const beerMessages = [];
 
@@ -83,8 +84,8 @@ const dbUser = ref(db, '/SNLApp/User/');
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
-let inputUserName = logInUser.value;
-let inputPassword = logInPassword.value; // Maybe not needed
+//let inputUserName = logInUser.value;
+//let inputPassword = logInPassword.value; // Maybe not needed
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
