@@ -1,8 +1,8 @@
 export class Message {
     constructor (
-        public readonly id: String,
-        public readonly username: String,
-        public readonly message: String,
+        public readonly id: string,
+        public readonly username: string,
+        public readonly message: string,
         //public readonly time: Date
     )
     {}
@@ -10,7 +10,7 @@ export class Message {
 
 export class Topic {
     constructor (
-        public readonly id: String,
+        public readonly id: string,
         public readonly messages: Message[],
     )
     {}
