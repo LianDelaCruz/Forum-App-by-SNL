@@ -1,12 +1,15 @@
+
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, dbUser } from "./modules/firebaseApp"; 
+import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser } from "./modules/firebaseApp"; 
 import { Profile } from "./modules/profileClass"; 
+import { User } from "./modules/userClass";
 
-getBeerInDb();
-getFoodInDb();
+getBeerInDb(console.log);
+getFoodInDb(console.log);
 getWineInDb(console.log)
-//user(); 
+createNewUser();
+console.log(createNewUser);
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
@@ -16,7 +19,7 @@ const logInBtn: HTMLButtonElement = document.querySelector('.log-in-btn');
 let inputUserName: String; 
 let inputPassword: String; 
 
-// Button for log in
+// Button for login
 logInBtn.addEventListener('click', (e) => {
     e.preventDefault();
     inputUserName = logInUser.value;
@@ -36,5 +39,4 @@ function onLoginFinish(result: false | User | Profile) {
         console.log(users); 
     
     })
-    // Sara puts some code in here later // from here call function that creates instans of class Profile?? 
-} 
+    // Sara puts some code in here later // from here call function that creates instans of class Profile??
