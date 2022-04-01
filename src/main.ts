@@ -1,5 +1,6 @@
-import { onValue, ref, push, remove } from "firebase/database";
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn } from "./modules/firebaseApp"; 
+import { onValue, ref, push, remove, get } from "firebase/database";
+import { AllUsers } from "./modules/allusersClass";
+import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, dbUser } from "./modules/firebaseApp"; 
 import { Profile } from "./modules/profileClass"; 
 
 getBeerInDb();
@@ -26,9 +27,14 @@ logInBtn.addEventListener('click', (e) => {
 // When log in is successful
 function onLoginFinish(result: false | User | Profile) {
     console.log(result)
-    const profile = new Profile(result); 
+    const profile = new Profile(result);
     console.log(profile); 
+    onValue(dbUser, snapshot => {
+        const userData = snapshot.val(); 
+        console.log(userData); 
+        const users = new AllUsers(userData); 
+        console.log(users); 
+    
+    })
     // Sara puts some code in here later // from here call function that creates instans of class Profile?? 
-
 } 
-
