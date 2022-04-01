@@ -2,31 +2,36 @@ import { contains } from "@firebase/util";
 
 export class Profile {
 
-    public readonly userData; /// from login-function
     // public readonly allUsers; // from database
-
-    constructor (userData:any, /*allUsers:any*/) {
-        this.userData = userData;
-        /*this.allUsers = allUsers;*/
+    constructor (
+        public readonly userData: Object, /// from login-function
+        // public readonly allUsers:any
+    ){
+        this.displayUser(userData);
+        // this.displayAllUsers(allUsers); 
     }
         
-    displayUser(userData) { /// creates every element upon creation of instans
-        const container = document.createElement('div');
+    private displayUser(userData):void { /// creates every element upon creation of instans
+        for(const key in userData) {
+            console.log(userData[key].username, userData[key].bio); 
+        }
+        
+        const container:HTMLDivElement = document.createElement('div');
         document.body.append(container);
-        const nameEl = document.createElement('h2');  
+        const nameEl:HTMLHeadingElement = document.createElement('h2');  
         container.appendChild(nameEl); 
         nameEl.innerText = userData.name; 
-        const bioEl = document.createElement('p'); 
+        const bioEl:HTMLParagraphElement = document.createElement('p'); 
         container.appendChild(bioEl); 
         bioEl.innerText = userData.username;
-        const imgEl = document.createElement('img'); 
+        const imgEl:HTMLImageElement = document.createElement('img'); 
         container.appendChild(imgEl); 
         imgEl.src = userData.img; 
         
     }
 
 
-    // displayAllUsers(allUsers) { /// displays all users from database, called when instans created 
+    // private displayAllUsers(allUsers):void { /// displays all users from database, called when instans created 
     //     for(const key in allUsers) {
     //         console.log(allUsers[key].username);
     //         const usersContainer = document.createElement('div'); 

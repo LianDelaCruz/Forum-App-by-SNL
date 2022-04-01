@@ -26,10 +26,10 @@ logInBtn.addEventListener('click', (e) => {
 })
 
 // When log in is successful
-function onLoginFinish(result: false | User) {
+function onLoginFinish(result: false | User | Profile) {
     console.log(result)
-    return result;   
-
+    const profile = new Profile(result); 
+    console.log(profile); 
     // Sara puts some code in here later // from here call function that creates instans of class Profile?? 
 
 }
