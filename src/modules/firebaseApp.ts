@@ -1,24 +1,25 @@
 // Initialize firebase app here
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, update, onValue, ref, push, remove, get, child } from "firebase/database"; 
+import { getDatabase, update, onValue, ref, push, remove, get, child, equalTo } from "firebase/database";
 import { Message, Topic, Forum } from "./forumClass";
 import { User } from "./userClass";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDL07WyQ4kUZxrJfaW40SjQfrn3gN2dT94",
-  authDomain: "slutproject-9a74a.firebaseapp.com",
-  databaseURL: "https://slutproject-9a74a-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "slutproject-9a74a",
-  storageBucket: "slutproject-9a74a.appspot.com",
-  messagingSenderId: "361932831586",
-  appId: "1:361932831586:web:d37219f0b7b44be54c0a3b"
+    apiKey: "AIzaSyDL07WyQ4kUZxrJfaW40SjQfrn3gN2dT94",
+    authDomain: "slutproject-9a74a.firebaseapp.com",
+    databaseURL: "https://slutproject-9a74a-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "slutproject-9a74a",
+    storageBucket: "slutproject-9a74a.appspot.com",
+    messagingSenderId: "361932831586",
+    appId: "1:361932831586:web:d37219f0b7b44be54c0a3b"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app); 
+export const db = getDatabase(app);
+// const dbRef = ref(db, '/SNLApp/');
 
 
 
@@ -30,24 +31,24 @@ const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
 export function getBeerInDb() {
     onValue(dbBeerForum, snapshot => {
-        const beerForum = snapshot.val(); 
-        console.log(beerForum); 
+        const beerForum = snapshot.val();
+        console.log(beerForum);
     })
 }
 export function getFoodInDb() {
     onValue(dbFoodForum, snapshot => {
-        const foodForum = snapshot.val(); 
-        console.log(foodForum); 
+        const foodForum = snapshot.val();
+        console.log(foodForum);
     })
 }
 
-export function getWineInDb(callback: (topic:Topic) => void) {
+export function getWineInDb(callback: (topic: Topic) => void) {
     onValue(dbWineForum, snapshot => {
         const messagesData = snapshot.val();
         const wineMessages = [];
 
-        for(const key in messagesData ) {
-            const message = new Message (
+        for (const key in messagesData) {
+            const message = new Message(
                 key,
                 messagesData[key].username,
                 messagesData[key].message)
@@ -59,7 +60,7 @@ export function getWineInDb(callback: (topic:Topic) => void) {
 }
 
 //Login existing user
-const dbUser = ref(db, '/SNLApp/User/'); 
+const dbUser = ref(db, '/SNLApp/User/');
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
@@ -69,12 +70,12 @@ let inputPassword = logInPassword.value; // Maybe not needed
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
         const userData = snapshot.val();
-        console.log(logIn); 
+        console.log(logIn);
         let result = false;
-        for(const key in userData) {
-            if(userData[key].username == username && userData[key].password == password) {
-                 result = userData[key];
-                 console.log('Log in was successful.');
+        for (const key in userData) {
+            if (userData[key].username == username && userData[key].password == password) {
+                result = userData[key];
+                console.log('Log in was successful.');
             }
         }
         callback(result) // Put an alert or message later for user to know if login fails
@@ -113,30 +114,37 @@ export function createNewUser(): void {
             img: newProfileImg.value
         }
 
-        // Keep working on this (have tried several ways of comparing username but don't know how to)
-        get(child(dbUser, `/${newUsername.value}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log('This username is already taken');
-                return;
-            }
-            else { 
-            const newKey:string = push(dbUser).key;
-            const newUserProfile = {};
-            newUserProfile[newKey] = addNewUser;
+        get(dbUser).then((snapshot) => {
+            const data = snapshot.val();
+            // console.log(data);
+            let addUser = true;
 
-            update(dbUser, newUserProfile);
-            console.log(addNewUser);
-            }
-        })
+            for (const key in data) {
+                // console.log(data[key].username);
+                if(data[key].username == newUsername.value) {
+                    console.log('This username is already taken'); // Put alert on this later
+                    addUser = false;
+                    break;
+                }   
+                }
 
-        newUsername.value = "";
-        newPassword.value = "";
-        newBio.value = "";
-        newProfileImg.value = "";
-    
-    })
+                if(addUser){
+                    const newKey:string = push(dbUser).key;
+                    const newUserProfile = {};
+                    newUserProfile[newKey] = addNewUser;
 
-}
-
-
-
+                    update(dbUser,newUserProfile);
+                }
+                else{
+                    console.log('You can not add a username with the same name as someone else'); // Put alert on this later
+                }
+        
+                newUsername.value = "";
+                newPassword.value = "";
+                newBio.value = "";
+                newProfileImg.value = "";
+        
+            })
+        
+        }
+    )}
