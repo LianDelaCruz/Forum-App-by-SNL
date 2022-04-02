@@ -29,14 +29,14 @@ const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
 const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
 
-export function getBeerInDb(callback: (topic:Topic) => void) {
+export function getBeerInDb(callback: (topic: Topic) => void) {
     onValue(dbBeerForum, snapshot => {
-      
-        const messagesData = snapshot.val(); 
+
+        const messagesData = snapshot.val();
         const beerMessages = [];
 
-        for(const key in messagesData) {
-            const message = new Message (
+        for (const key in messagesData) {
+            const message = new Message(
                 key,
                 messagesData[key].username,
                 messagesData[key].message)
@@ -46,13 +46,13 @@ export function getBeerInDb(callback: (topic:Topic) => void) {
         callback(beerForum);
     })
 }
-export function getFoodInDb(callback: (topic:Topic) => void) {
+export function getFoodInDb(callback: (topic: Topic) => void) {
     onValue(dbFoodForum, snapshot => {
-        const messagesData = snapshot.val(); 
+        const messagesData = snapshot.val();
         const foodMessages = [];
 
-        for(const key in messagesData) {
-            const message = new Message (
+        for (const key in messagesData) {
+            const message = new Message(
                 key,
                 messagesData[key].username,
                 messagesData[key].message)
@@ -81,12 +81,12 @@ export function getWineInDb(callback: (topic: Topic) => void) {
 }
 
 //Login existing user
-const dbUser = ref(db, '/SNLApp/User/'); 
+export const dbUser = ref(db, '/SNLApp/User/');
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
-//let inputUserName = logInUser.value;
-//let inputPassword = logInPassword.value; // Maybe not needed
+let inputUserName = logInUser.value;
+let inputPassword = logInPassword.value; // Maybe not needed
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
@@ -108,64 +108,83 @@ const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
 
 let users: User[] = [];
 
+let imgChosen = 'none';
+
 export function createNewUser(): void {
     onValue(dbUser, snapshot => {
         const newUserData = snapshot.val();
 
         users = [];
 
-        for(const key in newUserData) {
+        for (const key in newUserData) {
             users.push(new User(key, newUserData[key].username, newUserData[key].password, newUserData[key].bio, newUserData[key].img));
         }
     })
 
+    // Image buttons
+    const profileImg1: HTMLButtonElement = document.querySelector("#pic-1");
+    const profileImg2: HTMLButtonElement = document.querySelector("#pic-2");
+    const profileImg3: HTMLButtonElement = document.querySelector("#pic-3");
+
+    profileImg1.addEventListener('click', (e) => {
+        imgChosen = 'img/DogePanda.png';
+        console.log(imgChosen);
+    })
+
+    profileImg2.addEventListener('click', (e) => {
+        imgChosen = 'img/HoneyBunny.png';
+        console.log(imgChosen);
+    })
+
+    profileImg3.addEventListener('click', (e) => {
+        imgChosen = 'img/Papill.png';
+        console.log(imgChosen);
+    })
+
     // When user clicks sign up-button the info is sent and stored in database
-    // Need to fix the image here (input placeholder for now)
     createUserBtn.addEventListener('click', (e) => {
         const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
         const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
-        const newProfileImg: HTMLInputElement = document.querySelector("#sign-up-img");
+
         e.preventDefault();
 
         const addNewUser = {
             username: newUsername.value,
             password: newPassword.value,
             bio: newBio.value,
-            img: newProfileImg.value
+            img: imgChosen
         }
 
         get(dbUser).then((snapshot) => {
             const data = snapshot.val();
-            // console.log(data);
             let addUser = true;
 
             for (const key in data) {
-                // console.log(data[key].username);
-                if(data[key].username == newUsername.value) {
-                    console.log('This username is already taken'); // Put alert on this later
+                if (data[key].username == newUsername.value) {
+                    alert('Hey! You gotta be more creative than that. That username is already taken!');
                     addUser = false;
                     break;
-                }   
                 }
+            }
 
-                if(addUser){
-                    const newKey:string = push(dbUser).key;
-                    const newUserProfile = {};
-                    newUserProfile[newKey] = addNewUser;
+            if (addUser) {
+                const newKey: string = push(dbUser).key;
+                const newUserProfile = {};
+                newUserProfile[newKey] = addNewUser;
 
-                    update(dbUser,newUserProfile);
-                }
-                else{
-                    console.log('You can not add a username with the same name as someone else'); // Put alert on this later
-                }
-        
-                newUsername.value = "";
-                newPassword.value = "";
-                newBio.value = "";
-                newProfileImg.value = "";
-        
-            })
-        
-        }
-    )}
+                update(dbUser, newUserProfile);
+            }
+            else {
+                console.log('You can not add a username with the same name as someone else.');
+            }
+
+            newUsername.value = "";
+            newPassword.value = "";
+            newBio.value = "";
+
+        })
+
+    }
+    )
+}
