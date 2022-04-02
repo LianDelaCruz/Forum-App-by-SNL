@@ -1,7 +1,7 @@
 
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser } from "./modules/firebaseApp"; 
+import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
 import { Profile } from "./modules/profileClass"; 
 import { User } from "./modules/userClass";
 
@@ -32,11 +32,11 @@ function onLoginFinish(result: false | User | Profile) {
     console.log(result)
     const profile = new Profile(result);
     console.log(profile); 
-    onValue(dbUser, snapshot => {
+    onValue(allUsers, snapshot => {
         const userData = snapshot.val(); 
         console.log(userData); 
         const users = new AllUsers(userData); 
         console.log(users); 
     
     })
-    // Sara puts some code in here later // from here call function that creates instans of class Profile??
+}
