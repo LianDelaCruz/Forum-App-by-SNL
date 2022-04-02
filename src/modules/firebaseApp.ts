@@ -1,5 +1,4 @@
 // Initialize firebase app here
-
 import { initializeApp } from "firebase/app";
 import { getDatabase, update, onValue, ref, push, remove, get, child, equalTo } from "firebase/database";
 import { Message, Topic, Forum } from "./forumClass";
@@ -19,9 +18,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
-// const dbRef = ref(db, '/SNLApp/');
 
-
+// Everything that has a connection to the database is coded below in this file
 
 //FORUM topics
 const dbBeerForum = ref(db, '/SNLApp/Forum/beer/');

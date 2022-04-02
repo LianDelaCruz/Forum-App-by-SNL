@@ -22,7 +22,19 @@
 }
 
 /* Image-size on signup page */
+
 img {
     max-width: 20vw;
     max-height: 20vh;
+}
+
+/* Styling for login-page */
+
+.log-in-wrapper {
+    border: 1px solid black;
+    margin-bottom: 2rem;
+}
+
+.sign-up-wrapper {
+    border: 1px solid black;
 }

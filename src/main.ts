@@ -1,6 +1,5 @@
 
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, dbUser } from "./modules/firebaseApp"; 
-// import { AllUsers } from "./modules/allusersClass"; // This was duplicated so I commented one of them out
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { Profile } from "./modules/profileClass"; 
@@ -39,4 +38,7 @@ function onLoginFinish(result: false | User | Profile) {
         console.log(users); 
     
     })
+
+    logInUser.value = '';
+    logInPassword.value = '';
 }// Sara puts some code in here later // from here call function that creates instans of class Profile??
