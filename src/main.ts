@@ -1,6 +1,6 @@
 
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, dbUser } from "./modules/firebaseApp"; 
-import { AllUsers } from "./modules/allusersClass";
+// import { AllUsers } from "./modules/allusersClass"; // This was duplicated so I commented one of them out
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { Profile } from "./modules/profileClass"; 
