@@ -10,7 +10,6 @@ getBeerInDb(console.log);
 getFoodInDb(console.log);
 getWineInDb(console.log)
 createNewUser();
-console.log(createNewUser);
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');

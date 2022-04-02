@@ -85,8 +85,8 @@ export const dbUser = ref(db, '/SNLApp/User/');
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
-let inputUserName = logInUser.value;
-let inputPassword = logInPassword.value; // Maybe not needed
+// let inputUserName = logInUser.value;
+// let inputPassword = logInPassword.value; // Maybe not needed
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
@@ -125,6 +125,8 @@ export function createNewUser(): void {
     const profileImg1: HTMLButtonElement = document.querySelector("#pic-1");
     const profileImg2: HTMLButtonElement = document.querySelector("#pic-2");
     const profileImg3: HTMLButtonElement = document.querySelector("#pic-3");
+    const profileImg4: HTMLButtonElement = document.querySelector("#pic-4");
+    const profileImg5: HTMLButtonElement = document.querySelector("#pic-5");
 
     profileImg1.addEventListener('click', (e) => {
         imgChosen = 'img/DogePanda.png';
@@ -141,12 +143,21 @@ export function createNewUser(): void {
         console.log(imgChosen);
     })
 
+    profileImg4.addEventListener('click', (e) => {
+        imgChosen = 'img/MobyDick.png';
+        console.log(imgChosen);
+    })
+
+    profileImg5.addEventListener('click', (e) => {
+        imgChosen = 'img/Spanglinga.png';
+        console.log(imgChosen);
+    })
+
     // When user clicks sign up-button the info is sent and stored in database
     createUserBtn.addEventListener('click', (e) => {
         const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
         const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
-
         e.preventDefault();
 
         const addNewUser = {
