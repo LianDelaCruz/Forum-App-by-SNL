@@ -90,11 +90,8 @@ export const allUsers = ref(db, '/SNLApp/User/');
 
 //Login existing user
 
-const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
-const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
-
-// let inputUserName = logInUser.value;
-// let inputPassword = logInPassword.value; // Maybe not needed
+// const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
+// const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');  We dont need anymore
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
