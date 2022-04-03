@@ -93,8 +93,8 @@ export const allUsers = ref(db, '/SNLApp/User/');
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
-// let inputUserName = logInUser.value;
-// let inputPassword = logInPassword.value; // Maybe not needed
+let inputUserName = logInUser.value;
+let inputPassword = logInPassword.value; // Maybe not needed
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
@@ -109,7 +109,7 @@ export function logIn(username, password, callback): void {
         }
         callback(result) // Put an alert or message later for user to know if login fails
     })
-};
+}
 
 // Create new user (sign-up)
 const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
