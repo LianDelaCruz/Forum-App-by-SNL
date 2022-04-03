@@ -14,6 +14,7 @@ export class AllUsers {
             document.body.append(usersContainer); 
             const userParName:HTMLParagraphElement = document.createElement('p'); 
             userParName.innerText = allUsers[key].username; 
+            /// make this links 
             userParName.style.fontStyle = 'bold'; 
             usersContainer.appendChild(userParName);
 
