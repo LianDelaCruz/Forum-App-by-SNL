@@ -19,9 +19,13 @@ export class Profile {
         const bioEl:HTMLParagraphElement = document.createElement('p');
         container.appendChild(bioEl); 
         bioEl.innerText = userData.bio;
-        const imgEl:HTMLImageElement = document.createElement('img'); 
-        container.appendChild(imgEl); 
-        imgEl.src = userData.img; 
+        // const imgUrl = new URL(`${userData.img}`, import.meta.url);
+        // const img: HTMLImageElement = document.createElement('img');
+        // img.src = imgUrl.href;
+        // container.appendChild(img);
+        // const imgEl:HTMLImageElement = document.createElement('img'); 
+        // container.appendChild(imgEl); 
+        // imgEl.src = userData.img; 
         
     }
 

@@ -29,21 +29,27 @@ logInBtn.addEventListener('click', (e) => {
 // When log in is successful
 function onLoginFinish(result: false | User) { // Profile was deleted here after User in the testing to make login work again
     console.log(result)
-    // const profile = new Profile(result);
-    // console.log(profile); 
-    // onValue(allUsers, snapshot => {
-    //     const userData = snapshot.val(); 
-    //     console.log(userData); 
-    //     const users = new AllUsers(userData); 
-    //     console.log(users); 
+    const profile = new Profile(result);
+    console.log(profile); 
+    onValue(allUsers, snapshot => {
+        const userData = snapshot.val(); 
+        console.log(userData); 
+        const users = new AllUsers(userData); 
+        console.log(users); 
+
+        logInUser.value = '';
+        logInPassword.value = '';
+        
     
-    }
+    })
 
-    logInUser.value = '';
-logInPassword.value = '';
 
-// }
+}
 
+// const imgUrl = new URL('img/DogePanda.png', import.meta.url);
+// const img = document.createElement('img');
+// img.src = imgUrl.href;
+// document.body.append(img);
 
 
 
