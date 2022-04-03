@@ -103,7 +103,7 @@ export function logIn(username, password, callback): void {
         let result = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
-                result = userData[key];
+                result = userData[key]; /// object sent to callback function 
                 console.log('Log in was successful.');
             }
         }

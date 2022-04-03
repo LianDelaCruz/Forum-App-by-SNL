@@ -41,13 +41,20 @@ function onLoginFinish(result: false | User | Profile) {
             console.log(uData); 
             const users = new AllUsers(uData); 
             console.log(users); 
+            const a = document.createElement('a');
+            //a.setAttribute('href', '/forum.html?username=Sara');
+            a.setAttribute('href', `/forum.html?username=${profile.uData.username}`);
+            a.innerHTML = 'forum';
+            document.body.appendChild(a);
         })
-        
+
     }
+
+    /// add link to forum 
 }
 
 
-logInUser.value = '';
-logInPassword.value = '';
+// logInUser.value = '';
+// logInPassword.value = '';
 
 

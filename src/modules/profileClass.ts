@@ -11,6 +11,7 @@ export class Profile {
         
     private displayUser(uData):void { /// creates every element upon creation of instans
 
+        /// move to display.ts and call this from a function inside here 
         const container:HTMLDivElement = document.createElement('div');
         document.body.append(container);
         const nameEl:HTMLHeadingElement = document.createElement('h2');  
