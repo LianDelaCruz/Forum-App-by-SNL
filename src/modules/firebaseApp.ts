@@ -78,8 +78,18 @@ export function getWineInDb(callback: (topic: Topic) => void) {
     })
 }
 
+
+//USER 
+const dbUser = ref(db, '/SNLApp/User/'); 
+
+
+export const allUsers = ref(db, '/SNLApp/User/'); 
+
 //Login existing user
-export const dbUser = ref(db, '/SNLApp/User/');
+// const dbUser = ref(db, '/SNLApp/User/'); 
+
+//Login existing user
+
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 
