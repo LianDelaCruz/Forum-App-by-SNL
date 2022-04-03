@@ -85,8 +85,8 @@ const dbUser = ref(db, '/SNLApp/User/');
 
 export const allUsers = ref(db, '/SNLApp/User/'); 
 
-//Login existing user
-// const dbUser = ref(db, '/SNLApp/User/'); 
+
+
 
 //Login existing user
 
