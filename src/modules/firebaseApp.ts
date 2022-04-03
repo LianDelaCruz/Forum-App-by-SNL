@@ -43,7 +43,7 @@ export function getBeerInDb(callback: (topic: Topic) => void) {
         const beerForum = new Topic("beer", beerMessages);
         callback(beerForum);
     })
-}
+};
 export function getFoodInDb(callback: (topic: Topic) => void) {
     onValue(dbFoodForum, snapshot => {
         const messagesData = snapshot.val();
@@ -59,7 +59,7 @@ export function getFoodInDb(callback: (topic: Topic) => void) {
         const foodForum = new Topic("food", foodMessages);
         callback(foodForum);
     })
-}
+};
 
 export function getWineInDb(callback: (topic: Topic) => void) {
     onValue(dbWineForum, snapshot => {
@@ -76,7 +76,7 @@ export function getWineInDb(callback: (topic: Topic) => void) {
         const wineForum = new Topic("wine", wineMessages);//construct the class with data from database
         callback(wineForum); //call callback with the Topic-class
     })
-}
+};
 
 
 //USER 
@@ -109,13 +109,12 @@ export function logIn(username, password, callback): void {
         }
         callback(result) // Put an alert or message later for user to know if login fails
     })
-}
+};
 
 // Create new user (sign-up)
 const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
 
 let users: User[] = [];
-
 let imgChosen = 'none';
 
 export function createNewUser(): void {
@@ -204,6 +203,5 @@ export function createNewUser(): void {
 
         })
 
-    }
-    )
-}
+    })
+};

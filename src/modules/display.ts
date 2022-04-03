@@ -44,4 +44,4 @@ export function displayTopic(topic:Topic){
         console.log('success!!!')
     })
 
-}
+};

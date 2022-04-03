@@ -1,5 +1,4 @@
 
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, dbUser } from "./modules/firebaseApp"; 
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
@@ -42,7 +41,7 @@ function onLoginFinish(result: false | User | Profile) {
 
 }
 
-    logInUser.value = '';
-    logInPassword.value = '';
-}
+logInUser.value = '';
+logInPassword.value = '';
+
 
