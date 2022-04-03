@@ -1,6 +1,7 @@
 
 import { Message, Topic } from "./forumClass";
 import { getBeerInDb } from "./firebaseApp";
+import { beerBtn } from "../forum";
 
 // This is where we will create elements that will appear on our website
 
@@ -8,27 +9,39 @@ import { getBeerInDb } from "./firebaseApp";
 
 
 export function displayTopic(topic:Topic){
-    const forumContainer = document.querySelector('.forum-wrapper');
+    const topicContainer = document.querySelector('#topic-container');
+    topicContainer.className = 'topic-container';
+    topicContainer.innerHTML = '';
     //loop through topic.messages 
     // in the loop:
     const messages = topic.messages;
     for(let i=0; i<messages.length; i++){
-        const message = messages[i]
-
+        const message = messages[i];
         const content = message.message;
         const name = message.username;
 
-        const messageElement = document.createElement('div');
-        const messageContentElement = document.createElement('p')
-        messageContentElement.innerText = content
-        messageElement.appendChild(messageContentElement)
-        forumContainer.appendChild(messageElement);
+        const messageContainer = document.createElement('div');
+        topicContainer.appendChild(messageContainer);
+        messageContainer.className = 'msg-container';
 
-        console.log(message)
+        const messageUserElement:HTMLHeadingElement = document.createElement('h4');
+        messageContainer.appendChild(messageUserElement);
+        messageUserElement.innerText = name;
+
+        const messageContentElement: HTMLParagraphElement = document.createElement('p');
+        messageContainer.appendChild(messageContentElement);
+        messageContentElement.innerText = content;
     }
+    const messageInputElement:HTMLInputElement= document.createElement('input');
+    messageInputElement.placeholder = 'Write your message here!';
+    topicContainer.appendChild(messageInputElement);
 
+    const messageButtonElement:HTMLButtonElement = document.createElement('button');
+    messageButtonElement.textContent = 'SEND';
+    topicContainer.appendChild(messageButtonElement);
 
-    //create div and append message.message
-
+    messageButtonElement.addEventListener('click', e => {
+        console.log('success!!!')
+    })
 
 }

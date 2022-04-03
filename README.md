@@ -1,10 +1,10 @@
-# FE21-JS2-slutprojekt-SNL
+# FE21-JS2-slutprojekt-SNL :boom:
 
 This is a final project for Javascript 2. We are making a social media app.
-Decscription and further details will come. 
+Description and further details will come. 
 
 
--SNL
+-SNL :cherry_blossom:
 @nathaliedpettersson
 @SaraM83
 @Takikato09

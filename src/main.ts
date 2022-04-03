@@ -1,4 +1,5 @@
 
+import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, dbUser } from "./modules/firebaseApp"; 
 import { onValue, ref, push, remove, get } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
@@ -9,7 +10,6 @@ getBeerInDb(console.log);
 getFoodInDb(console.log);
 getWineInDb(console.log)
 createNewUser();
-console.log(createNewUser);
 
 // Login-form
 const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
@@ -39,4 +39,10 @@ function onLoginFinish(result: false | User | Profile) {
         console.log(users); 
     
     })
+
 }
+
+    logInUser.value = '';
+    logInPassword.value = '';
+}
+
