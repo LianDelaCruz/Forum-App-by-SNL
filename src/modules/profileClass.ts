@@ -24,6 +24,8 @@ export class Profile {
         const imgEl:HTMLImageElement = document.createElement('img'); 
         container.appendChild(imgEl); 
         imgEl.src = uData.img; 
+        const hideLogin:HTMLDivElement = document.querySelector('.user-wrapper');
+        hideLogin.style.display = 'none'; 
         
     }
 
