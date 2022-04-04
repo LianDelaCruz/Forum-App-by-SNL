@@ -15,7 +15,7 @@ const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 const logInBtn: HTMLButtonElement = document.querySelector('.log-in-btn');
 
-let inputUserName: string; 
+export let inputUserName: string; 
 let inputPassword: string; 
 
 // Button for login
@@ -43,7 +43,8 @@ function onLoginFinish(result: false | User | Profile) {
             console.log(users); 
             const a = document.createElement('a');
             //a.setAttribute('href', '/forum.html?username=Sara');
-            a.setAttribute('href', `/forum.html?username=${profile.uData.username}`);
+            // a.setAttribute('href', `/forum.html?username=${profile.uData.username}`);
+            a.setAttribute('href', `/forum.html?username=${inputUserName}`);
             a.innerHTML = 'forum';
             document.body.appendChild(a);
         })
