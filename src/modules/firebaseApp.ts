@@ -129,28 +129,23 @@ export function createNewUser(): void {
     const profileImg5: HTMLButtonElement = document.querySelector("#pic-5");
 
     profileImg1.addEventListener('click', (e) => {
-        imgChosen = 'img/DogePanda.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/DogePanda.svg';
     })
 
     profileImg2.addEventListener('click', (e) => {
-        imgChosen = 'img/HoneyBunny.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/HoneyBunny.svg';
     })
 
     profileImg3.addEventListener('click', (e) => {
-        imgChosen = 'img/Papill.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/Papill.svg';
     })
 
     profileImg4.addEventListener('click', (e) => {
-        imgChosen = 'img/MobyDick.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/MobyDick.svg'
     })
 
     profileImg5.addEventListener('click', (e) => {
-        imgChosen = 'img/Spanglinga.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/Spanglinga.svg';
     })
 
     // When user clicks sign up-button the info is sent and stored in database

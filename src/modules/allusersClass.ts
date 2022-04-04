@@ -1,5 +1,4 @@
-import { allUsers } from "./firebaseApp"; 
-
+import { allUsers } from "./firebaseApp";
 export class AllUsers {
     constructor (
         public readonly allUsers: Object,
