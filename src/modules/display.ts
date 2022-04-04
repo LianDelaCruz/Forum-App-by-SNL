@@ -1,8 +1,8 @@
 
 import { Message, Topic } from "./forumClass";
-import { getBeerInDb, sendMessageToBeer, dbFoodForum, dbBeerForum, dbWineForum } from "./firebaseApp";
-import { update, push } from "firebase/database";
-import { userName } from "../forum";
+import { getBeerInDb, sendMessageToBeer, dbFoodForum, dbBeerForum, dbWineForum, db } from "./firebaseApp";
+import { update, push, remove, ref } from "firebase/database";
+import { userName, deleteMsgBtn } from "../forum";
 
 // This is where we will create elements that will appear on our website
 
@@ -32,6 +32,9 @@ export function displayTopic(topic:Topic){
         const messageContentElement: HTMLParagraphElement = document.createElement('p');
         messageContainer.appendChild(messageContentElement);
         messageContentElement.innerText = content;
+
+        messageContainer.appendChild(deleteMsgBtn);
+        deleteMsgBtn.innerText = 'delete';
     }
     const messageInputElement:HTMLInputElement= document.createElement('input');
     messageInputElement.placeholder = 'Write your message here!';
@@ -39,7 +42,6 @@ export function displayTopic(topic:Topic){
 
     const messageButtonElement:HTMLButtonElement = document.createElement('button');
     messageButtonElement.textContent = 'SEND';
-    // messageButtonElement.onclick = () => {sendMessageToBeer(new Message('123', 'Indy', 'hungry'))}
     topicContainer.appendChild(messageButtonElement);
     messageButtonElement.className = 'messageButtonElement';
     
@@ -58,12 +60,20 @@ export function displayTopic(topic:Topic){
             username:userName,
             message: messageInputElement.value
         }
-        //messages= '';
         const newKey:string = push(dbReferences[topic.id]).key;
         const newChat = {};
         newChat[newKey] = messageToAdd;
         update(dbReferences[topic.id], newChat);   
     })
+
+    deleteMsgBtn.addEventListener('click', () => {
+        const deleteMessage = ref(db, '/SNLApp/Forum/' + this.id);
+        remove(deleteMessage);
+    })
+
+    // if(userName != Message[this.username]){
+    //     deleteMsgBtn.style.display = 'none';
+    // }
 
 };
 

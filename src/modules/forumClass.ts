@@ -6,7 +6,7 @@ export class Message {
         //public readonly time: Date
     )
     {
-
+        this.username = username;
     }
 }
 
