@@ -39,8 +39,10 @@ export class AllUsers {
                 const hideWrapper:HTMLDivElement = document.querySelector('.user-wrapper');
                 hideWrapper.style.display = 'none'; 
                 const img:HTMLImageElement = document.createElement('img'); 
+                const stringImg: string = `${allUsers[key].img}`;
+                const imgUrl = new URL(stringImg, import.meta.url);
+                img.src = imgUrl.href;
                 mainDiv.appendChild(img); 
-                img.src = allUsers[key].img; 
             })
         }
     
