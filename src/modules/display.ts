@@ -41,6 +41,7 @@ export function displayTopic(topic:Topic){
     topicContainer.appendChild(messageButtonElement);
 
     messageButtonElement.addEventListener('click', e => {
+       
         console.log('success!!!')
     })
 

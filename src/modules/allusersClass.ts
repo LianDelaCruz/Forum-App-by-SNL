@@ -1,4 +1,4 @@
-
+import { allUsers } from "./firebaseApp"; 
 
 export class AllUsers {
     constructor (
@@ -14,7 +14,7 @@ export class AllUsers {
             document.body.append(usersContainer); 
             const userParName:HTMLParagraphElement = document.createElement('p'); 
             userParName.innerText = allUsers[key].username; 
-            /// make this links 
+            /// make these links // put the rest of this in function 
             userParName.style.fontStyle = 'bold'; 
             usersContainer.appendChild(userParName);
 
@@ -28,7 +28,11 @@ export class AllUsers {
             hiddenDiv.appendChild(bioPar);  
             const img:HTMLImageElement = document.createElement('img');
             hiddenDiv.appendChild(img); 
-            img.src = allUsers[key].img; 
+            // img.src = allUsers[key].img; 
+            const stringImg1 = `${allUsers[key].img}`;
+            const imgUrl = new URL(stringImg1, import.meta.url );
+            img.src = imgUrl.href;
+            console.log(imgUrl);
             userParName.addEventListener('mouseover', function() {
                 hiddenDiv.style.display = 'block'; 
                     
