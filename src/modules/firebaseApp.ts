@@ -86,16 +86,9 @@ export function sendMessageToBeer(message: Message) {
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 
 
-
 export const allUsers = ref(db, '/SNLApp/User/'); 
 
-
-
-
 //Login existing user
-
-// const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
-// const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');  We dont need anymore
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
@@ -104,11 +97,11 @@ export function logIn(username, password, callback): void {
         let result = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
-                result = userData[key]; /// object sent to callback function 
+                result = userData[key]; /// Object sent to callback function 
                 console.log('Log in was successful.');
             }
         }
-        callback(result) // Put an alert or message later for user to know if login fails
+        callback(result) 
     })
 };
 
@@ -137,28 +130,23 @@ export function createNewUser(): void {
     const profileImg5: HTMLButtonElement = document.querySelector("#pic-5");
 
     profileImg1.addEventListener('click', (e) => {
-        imgChosen = 'img/DogePanda.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/DogePanda.svg';
     })
 
     profileImg2.addEventListener('click', (e) => {
-        imgChosen = 'img/HoneyBunny.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/HoneyBunny.svg';
     })
 
     profileImg3.addEventListener('click', (e) => {
-        imgChosen = 'img/Papill.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/Papill.svg';
     })
 
     profileImg4.addEventListener('click', (e) => {
-        imgChosen = 'img/MobyDick.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/MobyDick.svg'
     })
 
     profileImg5.addEventListener('click', (e) => {
-        imgChosen = 'img/Spanglinga.png';
-        console.log(imgChosen);
+        imgChosen = 'https://api.multiavatar.com/Spanglinga.svg';
     })
 
     // When user clicks sign up-button the info is sent and stored in database

@@ -1,3 +1,4 @@
+
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
 import { onValue, ref, push, remove, get, update } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
@@ -44,7 +45,12 @@ function onLoginFinish(result: false | User | Profile) {
             a.innerHTML = 'forum';
             document.body.appendChild(a);
         })
+       
 
+    }
+
+    else {
+        alert('Hey! You sure you have an account here? Or maybe you typed the wrong password.');
     }
 
     /// add link to forum 
