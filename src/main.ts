@@ -1,8 +1,6 @@
 
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
-
-
-import { onValue, ref, push, remove, get } from "firebase/database";
+import { onValue, ref, push, remove, get, update } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { Profile } from "./modules/profileClass"; 
 import { User } from "./modules/userClass";
@@ -17,8 +15,8 @@ const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
 const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');
 const logInBtn: HTMLButtonElement = document.querySelector('.log-in-btn');
 
-let inputUserName: String; 
-let inputPassword: String; 
+let inputUserName: string; 
+let inputPassword: string; 
 
 // Button for login
 logInBtn.addEventListener('click', (e) => {
@@ -34,7 +32,8 @@ function onLoginFinish(result: false | User | Profile) {
 
     if(result) {
         const profile = new Profile(result);
-        console.log(profile); 
+        console.log(profile);
+        sessionStorage.setItem('username', inputUserName)
         onValue(allUsers, snapshot => {
             const uData = snapshot.val(); 
             console.log(uData); 

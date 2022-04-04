@@ -22,9 +22,10 @@ export const db = getDatabase(app);
 // Everything that has a connection to the database is coded below in this file
 
 //FORUM topics
-const dbBeerForum = ref(db, '/SNLApp/Forum/beer/');
-const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
-const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
+export const dbForum = ref(db, '/SNLApp/Forum/');
+export const dbBeerForum = ref(db, '/SNLApp/Forum/beer/');
+export const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
+export const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
 
 export function getBeerInDb(callback: (topic: Topic) => void) {
