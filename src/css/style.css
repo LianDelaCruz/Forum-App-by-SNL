@@ -4,11 +4,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .forum-btns {
     padding: 5px;
+    align-items: center;
 }
 
 .topic-container {

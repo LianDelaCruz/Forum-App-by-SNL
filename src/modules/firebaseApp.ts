@@ -78,6 +78,9 @@ export function getWineInDb(callback: (topic: Topic) => void) {
     })
 };
 
+export function sendMessageToBeer(message: Message) {
+    push(dbBeerForum, message);
+}
 
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 

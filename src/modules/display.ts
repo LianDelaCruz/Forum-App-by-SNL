@@ -1,6 +1,6 @@
 
 import { Message, Topic } from "./forumClass";
-import { getBeerInDb } from "./firebaseApp";
+import { getBeerInDb, sendMessageToBeer } from "./firebaseApp";
 import { beerBtn } from "../forum";
 
 // This is where we will create elements that will appear on our website
@@ -38,11 +38,26 @@ export function displayTopic(topic:Topic){
 
     const messageButtonElement:HTMLButtonElement = document.createElement('button');
     messageButtonElement.textContent = 'SEND';
+    messageButtonElement.onclick = () => {sendMessageToBeer(new Message('123', 'Indy', 'hungry'))}
     topicContainer.appendChild(messageButtonElement);
 
     messageButtonElement.addEventListener('click', e => {
        
         console.log('success!!!')
     })
-
 };
+
+//document.querySelector('#send-button').addEventListener('click', e => {
+//     const userMessageInput:HTMLInputElement = document.querySelector('.user-message');
+//     e.preventDefault();
+//     const messageToAdd = {
+//         name: currentUserName,
+//         message: userMessageInput.value,
+//         time: Date.now()
+//     }
+//     userMessageInput.value = ''
+//     const newKey:string = push(dbRef).key;
+//     const newChat = {};
+//     newChat[newKey] = messageToAdd;
+//     update(dbRef, newChat);
+// })
