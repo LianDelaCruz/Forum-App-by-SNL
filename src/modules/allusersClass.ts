@@ -6,6 +6,8 @@ export class AllUsers {
     ){
         this.displayAllUsers(allUsers);
     }
+
+    /// lägga allt detta i en eventlistener kopplad till namnet, som visar user on mouseover 
     private displayAllUsers(allUsers):void { /// displays all users from database, 
         
         for(const key in allUsers) {
@@ -14,8 +16,10 @@ export class AllUsers {
             document.body.append(usersContainer); 
             const userParName:HTMLParagraphElement = document.createElement('p'); 
             userParName.innerText = allUsers[key].username; 
+
             /// make these links // put the rest of this in function 
-            userParName.style.fontStyle = 'bold'; 
+            userParName.style.fontWeight = 'bold';
+            userParName.style.textDecoration = 'underline'; 
             usersContainer.appendChild(userParName);
 
             userParName.addEventListener('click', function(){
@@ -23,6 +27,7 @@ export class AllUsers {
                 document.body.append(hiddenDiv); 
                 hiddenDiv.classList.add('.main-div'); 
                 hiddenDiv.style.display = 'block'; 
+<<<<<<< Updated upstream
                 const bioPar:HTMLParagraphElement = document.createElement('p'); 
                 bioPar.classList.add('#bio'); 
                 bioPar.innerText = allUsers[key].bio; 
@@ -39,6 +44,12 @@ export class AllUsers {
                 //     allDivs[i].style.display = 'none'; 
                 // }
                 
+=======
+                userParName.style.fontStyle = 'underline';  
+            })
+            userParName.addEventListener('mouseout', function() {
+                hiddenDiv.style.display = 'none'; 
+>>>>>>> Stashed changes
             })
         }
         
