@@ -32,7 +32,9 @@ logInBtn.addEventListener('click', (e) => {
 // When log in is successful
 function onLoginFinish(result: false | User | Profile) {
     console.log(result)
-
+    sessionStorage.setItem('username', `${inputUserName}`); 
+    let usrName = sessionStorage.getItem('username'); 
+    console.log(usrName); 
     if(result) {
         const profile = new Profile(result);
         console.log(profile); 
