@@ -24,6 +24,7 @@ export function displayTopic(topic:Topic){
         const messageContainer = document.createElement('div');
         topicContainer.appendChild(messageContainer);
         messageContainer.className = 'msg-container';
+        messageContainer.id = this.id;
 
         const messageUserElement:HTMLHeadingElement = document.createElement('h4');
         messageContainer.appendChild(messageUserElement);
@@ -35,6 +36,7 @@ export function displayTopic(topic:Topic){
 
         messageContainer.appendChild(deleteMsgBtn);
         deleteMsgBtn.innerText = 'delete';
+        deleteMsgBtn.className = 'delbtn';
     }
     const messageInputElement:HTMLInputElement= document.createElement('input');
     messageInputElement.placeholder = 'Write your message here!';
@@ -67,12 +69,13 @@ export function displayTopic(topic:Topic){
     })
 
     deleteMsgBtn.addEventListener('click', () => {
-        const deleteMessage = ref(db, '/SNLApp/Forum/' + this.id);
-        remove(deleteMessage);
+        console.log('clicked!')
+        // const deleteMessage = ref(dbReferences[topic.id] + this.id);
+        // remove(deleteMessage);
     })
 
-    // if(userName != Message[this.username]){
-    //     deleteMsgBtn.style.display = 'none';
+    //  if(userName != this.username){
+    //      deleteMsgBtn.style.display = 'none';
     // }
 
 };
