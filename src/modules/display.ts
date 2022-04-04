@@ -1,7 +1,8 @@
 
 import { Message, Topic } from "./forumClass";
-import { getBeerInDb, sendMessageToBeer } from "./firebaseApp";
-import { beerBtn } from "../forum";
+import { getBeerInDb, sendMessageToBeer, dbFoodForum, dbBeerForum, dbWineForum } from "./firebaseApp";
+import { update, push } from "firebase/database";
+import { userName } from "../forum";
 
 // This is where we will create elements that will appear on our website
 
@@ -14,7 +15,7 @@ export function displayTopic(topic:Topic){
     topicContainer.innerHTML = '';
     //loop through topic.messages 
     // in the loop:
-    const messages = topic.messages;
+    let messages = topic.messages;
     for(let i=0; i<messages.length; i++){
         const message = messages[i];
         const content = message.message;
@@ -38,26 +39,32 @@ export function displayTopic(topic:Topic){
 
     const messageButtonElement:HTMLButtonElement = document.createElement('button');
     messageButtonElement.textContent = 'SEND';
-    messageButtonElement.onclick = () => {sendMessageToBeer(new Message('123', 'Indy', 'hungry'))}
+    // messageButtonElement.onclick = () => {sendMessageToBeer(new Message('123', 'Indy', 'hungry'))}
     topicContainer.appendChild(messageButtonElement);
+    messageButtonElement.className = 'messageButtonElement';
+    
+
+    //this will refer to which topic is selected in the messageButtonElement(send button)
+    const dbReferences = {
+        'beer': dbBeerForum,
+        'wine': dbWineForum,
+        'food': dbFoodForum,
+    }
 
     messageButtonElement.addEventListener('click', e => {
-       
-        console.log('success!!!')
+        messageInputElement;
+        e.preventDefault();
+        const messageToAdd = {
+            username:userName,
+            message: messageInputElement.value
+        }
+        //messages= '';
+        const newKey:string = push(dbReferences[topic.id]).key;
+        const newChat = {};
+        newChat[newKey] = messageToAdd;
+        update(dbReferences[topic.id], newChat);   
     })
+
 };
 
-//document.querySelector('#send-button').addEventListener('click', e => {
-//     const userMessageInput:HTMLInputElement = document.querySelector('.user-message');
-//     e.preventDefault();
-//     const messageToAdd = {
-//         name: currentUserName,
-//         message: userMessageInput.value,
-//         time: Date.now()
-//     }
-//     userMessageInput.value = ''
-//     const newKey:string = push(dbRef).key;
-//     const newChat = {};
-//     newChat[newKey] = messageToAdd;
-//     update(dbRef, newChat);
-// })
+

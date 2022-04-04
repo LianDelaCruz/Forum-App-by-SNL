@@ -5,7 +5,9 @@ export class Message {
         public readonly message: string,
         //public readonly time: Date
     )
-    {}
+    {
+
+    }
 }
 
 export class Topic {
