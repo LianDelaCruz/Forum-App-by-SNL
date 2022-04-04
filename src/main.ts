@@ -29,7 +29,7 @@ logInBtn.addEventListener('click', (e) => {
 // When log in is successful
 function onLoginFinish(result: false | User | Profile) {
     console.log(result)
-
+        
     if(result) {
         const profile = new Profile(result);
         console.log(profile);

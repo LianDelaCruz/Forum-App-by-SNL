@@ -1,8 +1,8 @@
 
-import { Message, Topic } from "./forumClass";
-import { getBeerInDb, sendMessageToBeer, dbFoodForum, dbBeerForum, dbWineForum, db } from "./firebaseApp";
+import { Topic } from "./forumClass";
+import { dbFoodForum, dbBeerForum, dbWineForum, db } from "./firebaseApp";
 import { update, push, remove, ref } from "firebase/database";
-import { userName, deleteMsgBtn } from "../forum";
+import { userName } from "../forum";
 
 // This is where we will create elements that will appear on our website
 
@@ -18,25 +18,35 @@ export function displayTopic(topic:Topic){
     let messages = topic.messages;
     for(let i=0; i<messages.length; i++){
         const message = messages[i];
+        const messageId = message.id;
         const content = message.message;
-        const name = message.username;
+        const messageAuthor = message.username;
 
         const messageContainer = document.createElement('div');
         topicContainer.appendChild(messageContainer);
         messageContainer.className = 'msg-container';
-        messageContainer.id = this.id;
+        // messageContainer.id = this.id;
 
         const messageUserElement:HTMLHeadingElement = document.createElement('h4');
         messageContainer.appendChild(messageUserElement);
-        messageUserElement.innerText = name;
+        messageUserElement.innerText = messageAuthor;
 
         const messageContentElement: HTMLParagraphElement = document.createElement('p');
         messageContainer.appendChild(messageContentElement);
         messageContentElement.innerText = content;
 
-        messageContainer.appendChild(deleteMsgBtn);
-        deleteMsgBtn.innerText = 'delete';
-        deleteMsgBtn.className = 'delbtn';
+        const shouldAddDeleteButton = messageAuthor === sessionStorage.getItem('username');
+        if(shouldAddDeleteButton) {
+            const deleteMsgBtn: HTMLButtonElement = document.createElement ('button');
+            deleteMsgBtn.innerText = 'Delete';
+            deleteMsgBtn.className = 'delbtn';
+            deleteMsgBtn.addEventListener('click', () => {
+                const dbPath = '/SNLApp/Forum/' + topic.id + '/' + messageId
+                const messageDbref = ref(db, dbPath);
+                remove(messageDbref);
+            })
+            messageContainer.appendChild(deleteMsgBtn);
+        }
     }
     const messageInputElement:HTMLInputElement= document.createElement('input');
     messageInputElement.placeholder = 'Write your message here!';
@@ -68,11 +78,6 @@ export function displayTopic(topic:Topic){
         update(dbReferences[topic.id], newChat);   
     })
 
-    deleteMsgBtn.addEventListener('click', () => {
-        console.log('clicked!')
-        // const deleteMessage = ref(dbReferences[topic.id] + this.id);
-        // remove(deleteMessage);
-    })
 
     //  if(userName != this.username){
     //      deleteMsgBtn.style.display = 'none';
