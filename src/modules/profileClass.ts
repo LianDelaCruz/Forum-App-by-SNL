@@ -14,6 +14,7 @@ export class Profile {
         /// move to display.ts and call this from a function inside here 
         const container:HTMLDivElement = document.createElement('div');
         document.body.append(container);
+        container.classList.add('profile-container'); 
         const nameEl:HTMLHeadingElement = document.createElement('h2');  
         container.appendChild(nameEl); 
         nameEl.innerText = uData.username;  
