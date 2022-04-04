@@ -1,5 +1,4 @@
 
-
 import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
 
 

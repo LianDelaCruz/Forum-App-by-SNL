@@ -1,12 +1,12 @@
-import { allUsers } from "./firebaseApp"; 
-
+import { allUsers } from "./firebaseApp";
 export class AllUsers {
     constructor (
         public readonly allUsers: Object,
     ){
         this.displayAllUsers(allUsers);
     }
-    private displayAllUsers(allUsers):void { /// displays all users from database, 
+
+    private displayAllUsers(allUsers):void { /// displays all users from database,
         for(const key in allUsers) {
 
             console.log(allUsers[key].bio, allUsers[key].username)
@@ -28,11 +28,9 @@ export class AllUsers {
             hiddenDiv.appendChild(bioPar);  
             const img:HTMLImageElement = document.createElement('img');
             hiddenDiv.appendChild(img); 
-            // img.src = allUsers[key].img; 
-            const stringImg1 = `${allUsers[key].img}`;
-            const imgUrl = new URL(stringImg1, import.meta.url );
+            const stringImg: string = `${allUsers[key].img}`;
+            const imgUrl = new URL(stringImg, import.meta.url );
             img.src = imgUrl.href;
-            console.log(imgUrl);
             userParName.addEventListener('mouseover', function() {
                 hiddenDiv.style.display = 'block'; 
                     
