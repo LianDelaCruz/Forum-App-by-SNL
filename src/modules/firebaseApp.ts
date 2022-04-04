@@ -85,16 +85,9 @@ export function sendMessageToBeer(message: Message) {
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 
 
-
 export const allUsers = ref(db, '/SNLApp/User/'); 
 
-
-
-
 //Login existing user
-
-// const logInUser: HTMLInputElement = document.querySelector('#log-in-name');
-// const logInPassword: HTMLInputElement = document.querySelector('#log-in-pass');  We dont need anymore
 
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
@@ -103,11 +96,11 @@ export function logIn(username, password, callback): void {
         let result = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
-                result = userData[key]; /// object sent to callback function 
+                result = userData[key]; /// Object sent to callback function 
                 console.log('Log in was successful.');
             }
         }
-        callback(result) // Put an alert or message later for user to know if login fails
+        callback(result) 
     })
 };
 
