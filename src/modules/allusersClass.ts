@@ -10,7 +10,8 @@ export class AllUsers {
 
     private displayAllUsers(allUsers):void { /// displays all users from database, 
         const usersContainer:HTMLDivElement = document.createElement('div'); 
-        document.body.append(usersContainer); 
+        document.body.append(usersContainer);
+        usersContainer.classList.add('allusers-links'); 
         let mainDiv:HTMLDivElement = document.createElement('div');
         document.body.append(mainDiv);
 
