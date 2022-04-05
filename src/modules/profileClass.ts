@@ -1,6 +1,7 @@
 import { contains } from "@firebase/util";
 import { inputUserName } from "../main"; 
 
+
 export class Profile {
 
     // public readonly allUsers; // from database
@@ -41,6 +42,8 @@ export class Profile {
         hideLogin.style.display = 'none'; 
         
     }
-
+    
 }
+
+
 
