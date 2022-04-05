@@ -11,12 +11,9 @@ export function deleteAccount(): void {
     deleteButton.addEventListener('click', (e) => {
         let deleteAccountBtn = confirm('Are you sure?');
 
-        console.log(sessionStorage.getItem('username'), users);
-
         if (deleteAccountBtn) {
 
             for (let i = 0; i < users.length; i++) {
-                console.log(users[i]);
                 const user = users[i].username;
                 console.log(user);
 

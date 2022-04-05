@@ -3,7 +3,6 @@ export class Message {
         public readonly id: string,
         public readonly username: string,
         public readonly message: string,
-        //public readonly time: Date
     )
     {
         this.username = username;

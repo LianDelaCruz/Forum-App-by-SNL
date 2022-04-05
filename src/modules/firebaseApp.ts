@@ -1,10 +1,8 @@
-// Initialize firebase app here
 import { initializeApp } from "firebase/app";
 import { getDatabase, update, onValue, ref, push, get } from "firebase/database";
 import { Message, Topic } from "./forumClass";
 import { User } from "./userClass";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDL07WyQ4kUZxrJfaW40SjQfrn3gN2dT94",
     authDomain: "slutproject-9a74a.firebaseapp.com",
@@ -19,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
-// Everything that has a connection to the database is coded below in this file
+// EVERYTHING THAT SENDS/GETS/UPDATES WITH THE DATABASE IS CODED BELOW IN THIS FILE
 
 //FORUM topics
 export const dbForum = ref(db, '/SNLApp/Forum/');
@@ -79,12 +77,11 @@ export function getWineInDb(callback: (topic: Topic) => void) {
     })
 };
 
-//USER 
-const dbUser = ref(db, '/SNLApp/User/'); 
-export const allUsers = ref(db, '/SNLApp/User/'); 
+//USER-references
+const dbUser = ref(db, '/SNLApp/User/');
+export const allUsers = ref(db, '/SNLApp/User/');
 
 //Login existing user
-
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
         const userData = snapshot.val();
@@ -92,24 +89,22 @@ export function logIn(username, password, callback): void {
         let result = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
-                result = userData[key]; /// Object sent to callback function 
+                result = userData[key]; /// Object sent to callback function when result is true
                 console.log('Log in was successful.');
             }
         }
-        callback(result) 
+        callback(result)
     })
 };
 
-// Create new user (sign-up)
+//Create new user
 const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
-
 export let users: User[] = [];
 let imgChosen = 'none';
 
 export function createNewUser(): void {
     onValue(dbUser, snapshot => {
         const newUserData = snapshot.val();
-
         users = [];
 
         for (const key in newUserData) {
@@ -117,13 +112,14 @@ export function createNewUser(): void {
         }
     })
 
-    // Image buttons
+    // Image buttons to choose profile picture upon creating new user
     const profileImg1: HTMLButtonElement = document.querySelector("#pic-1");
     const profileImg2: HTMLButtonElement = document.querySelector("#pic-2");
     const profileImg3: HTMLButtonElement = document.querySelector("#pic-3");
     const profileImg4: HTMLButtonElement = document.querySelector("#pic-4");
     const profileImg5: HTMLButtonElement = document.querySelector("#pic-5");
 
+    // Sends string of API-address as img-value to database
     profileImg1.addEventListener('click', (e) => {
         imgChosen = 'https://api.multiavatar.com/c4914ce2b134f826c7.svg';
     })
@@ -144,7 +140,7 @@ export function createNewUser(): void {
         imgChosen = 'https://api.multiavatar.com/Spanglinga.svg';
     })
 
-    // When user clicks sign up-button the info is sent and stored in database
+    // When user clicks sign up-button info is sent and stored in database
     createUserBtn.addEventListener('click', (e) => {
         const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
