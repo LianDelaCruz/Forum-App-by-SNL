@@ -1,4 +1,4 @@
-import { contains } from "@firebase/util";
+// import { contains } from "@firebase/util";
 import { inputUserName } from "../main"; 
 
 
@@ -15,20 +15,16 @@ export class Profile {
     private displayUser(uData):void { /// creates every element upon creation of instans
         sessionStorage.setItem('username', `${inputUserName}`); 
         let usrName = sessionStorage.getItem('username');
-        console.log(usrName); 
-        /// move to display.ts and call this from a function inside here 
         const container:HTMLDivElement = document.createElement('div');
         document.body.append(container);
         container.classList.add('profile-container'); 
         const nameEl:HTMLHeadingElement = document.createElement('h2');  
-        //container.appendChild(nameEl); 
         const smallBox = document.createElement('div');
         smallBox.classList.add('profile-name-bio-div'); 
         container.appendChild(smallBox); 
         nameEl.innerText = 'Min profil'; 
         nameEl.classList.add('profile-name'); 
         const bioEl:HTMLParagraphElement = document.createElement('p');
-        //container.appendChild(bioEl); 
         bioEl.innerText = uData.bio;
         bioEl.classList.add('profile-bio'); 
         smallBox.appendChild(nameEl);
