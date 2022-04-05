@@ -1,7 +1,7 @@
 // Initialize firebase app here
 import { initializeApp } from "firebase/app";
 import { getDatabase, update, onValue, ref, push, remove, get, child, equalTo } from "firebase/database";
-import { Message, Topic, Forum } from "./forumClass";
+import { Message, Topic } from "./forumClass";
 import { User } from "./userClass";
 
 // Your web app's Firebase configuration
@@ -78,10 +78,6 @@ export function getWineInDb(callback: (topic: Topic) => void) {
         callback(wineForum); //call callback with the Topic-class
     })
 };
-
-export function sendMessageToBeer(message: Message) {
-    push(dbBeerForum, message);
-}
 
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 

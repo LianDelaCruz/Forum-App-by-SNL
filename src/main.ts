@@ -1,13 +1,11 @@
 
-import { db, getBeerInDb, getFoodInDb, getWineInDb, logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
+import { logIn, createNewUser, allUsers } from "./modules/firebaseApp"; 
 import { onValue, ref, push, remove, get, update } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { Profile } from "./modules/profileClass"; 
 import { User } from "./modules/userClass";
 
-getBeerInDb(console.log);
-getFoodInDb(console.log);
-getWineInDb(console.log)
+
 createNewUser();
 
 // Login-form
@@ -48,19 +46,8 @@ function onLoginFinish(result: false | User | Profile) {
             a.innerHTML = 'forum';
             document.body.appendChild(a);
         })
-       
-
-    }
-
-    else {
+    } else {
         alert('Hey! You sure you have an account here? Or maybe you typed the wrong password.');
     }
-
-    /// add link to forum 
 }
-
-
-// logInUser.value = '';
-// logInPassword.value = '';
-
 

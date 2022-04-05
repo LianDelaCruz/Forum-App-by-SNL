@@ -6,7 +6,6 @@ const beerBtn:HTMLButtonElement = document.querySelector('#beer-btn');
 const foodBtn:HTMLButtonElement = document.querySelector('#food-btn');
 const wineBtn:HTMLButtonElement = document.querySelector('#wine-btn');
 const deleteMsgBtn: HTMLButtonElement = document.createElement ('button');
-// const username = window.location.search.split('=')[1]
 export let userName: string = sessionStorage.getItem('username');
 console.log(userName)
 
