@@ -38,3 +38,14 @@ img {
 .sign-up-wrapper {
     border: 1px solid black;
 }
+
+/* Profile - page */ 
+
+.profile-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-name {
+    font-size: 3em;
+}
