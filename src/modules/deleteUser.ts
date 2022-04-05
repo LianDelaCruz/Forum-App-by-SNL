@@ -3,10 +3,12 @@ import { db, users } from "./firebaseApp";
 
 export function deleteAccount(): void {
     const buttonDiv = document.createElement('div');
+    buttonDiv.classList.add('del-btn-div'); 
     document.body.append(buttonDiv);
     const deleteButton: HTMLButtonElement = document.createElement('button');
+    deleteButton.classList.add('del-btn'); 
     buttonDiv.append(deleteButton);
-    deleteButton.innerText = 'Delete';
+    deleteButton.innerText = 'Delete my profile';
 
     deleteButton.addEventListener('click', (e) => {
         let deleteAccountBtn = confirm('Are you sure?');
