@@ -81,7 +81,6 @@ export function getWineInDb(callback: (topic: Topic) => void) {
 
 //USER 
 const dbUser = ref(db, '/SNLApp/User/'); 
-
 export const allUsers = ref(db, '/SNLApp/User/'); 
 
 //Login existing user
@@ -126,7 +125,7 @@ export function createNewUser(): void {
     const profileImg5: HTMLButtonElement = document.querySelector("#pic-5");
 
     profileImg1.addEventListener('click', (e) => {
-        imgChosen = 'https://api.multiavatar.com/DogePanda.svg';
+        imgChosen = 'https://api.multiavatar.com/c4914ce2b134f826c7.svg';
     })
 
     profileImg2.addEventListener('click', (e) => {
@@ -138,7 +137,7 @@ export function createNewUser(): void {
     })
 
     profileImg4.addEventListener('click', (e) => {
-        imgChosen = 'https://api.multiavatar.com/MobyDick.svg'
+        imgChosen = 'https://api.multiavatar.com/Moby%20Dick.svg'
     })
 
     profileImg5.addEventListener('click', (e) => {

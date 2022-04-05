@@ -27,10 +27,13 @@ export class Profile {
         bioEl.innerText = uData.bio;
         const imgEl:HTMLImageElement = document.createElement('img'); 
         container.appendChild(imgEl); 
-        imgEl.src = uData.img; 
+        const stringProfileImg: string = `${uData.img}`;
+        const profileImgUrl = new URL(stringProfileImg, import.meta.url);
+        imgEl.src = profileImgUrl.href; 
         const hideLogin:HTMLDivElement = document.querySelector('.user-wrapper');
         hideLogin.style.display = 'none'; 
         
     }
 
 }
+
