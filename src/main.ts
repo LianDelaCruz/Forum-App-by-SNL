@@ -4,6 +4,7 @@ import { onValue, ref, push, remove, get, update } from "firebase/database";
 import { AllUsers } from "./modules/allusersClass";
 import { Profile } from "./modules/profileClass"; 
 import { User } from "./modules/userClass";
+import { deleteAccount } from "./modules/deleteUser";
 
 
 createNewUser();
@@ -45,6 +46,8 @@ function onLoginFinish(result: false | User | Profile) {
             a.setAttribute('href', `/forum.html?username=${inputUserName}`);
             a.innerHTML = 'forum';
             document.body.appendChild(a);
+
+            deleteAccount();
         })
     } else {
         alert('Hey! You sure you have an account here? Or maybe you typed the wrong password.');

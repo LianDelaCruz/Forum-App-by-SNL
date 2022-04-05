@@ -103,7 +103,7 @@ export function logIn(username, password, callback): void {
 // Create new user (sign-up)
 const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
 
-let users: User[] = [];
+export let users: User[] = [];
 let imgChosen = 'none';
 
 export function createNewUser(): void {
