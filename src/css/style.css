@@ -57,3 +57,28 @@ img {
 .sign-up-wrapper {
     border: 1px solid black;
 }
+
+/* Profile - page */ 
+
+.profile-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-name {
+    font-size: 3em;
+
+}
+
+.allusers-links {
+    position: fixed;
+    top: 75%;
+    overflow: scroll;
+    height: 150px;
+    width: fit-content;
+}
+
+.allusers-links .profile-name {
+    font-size: 2em;
+    margin-left: 2rem;
+}

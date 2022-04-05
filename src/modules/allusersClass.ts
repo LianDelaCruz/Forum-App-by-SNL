@@ -10,7 +10,8 @@ export class AllUsers {
 
     private displayAllUsers(allUsers):void { /// displays all users from database, 
         const usersContainer:HTMLDivElement = document.createElement('div'); 
-        document.body.append(usersContainer); 
+        document.body.append(usersContainer);
+        usersContainer.classList.add('allusers-links'); 
         let mainDiv:HTMLDivElement = document.createElement('div');
         document.body.append(mainDiv);
 
@@ -36,12 +37,18 @@ export class AllUsers {
                 const p = document.createElement('p'); 
                 p.innerText = allUsers[key].username; 
                 mainDiv.appendChild(p); 
+                const smallBox = document.createElement('div');
+                smallBox.classList.add('profile-name-bio-div'); 
+                smallBox.appendChild(p);
+                mainDiv.appendChild(smallBox);
                 p.style.fontWeight = 'bold'; 
-                mainDiv.classList.add('main-div'); 
+                p.classList.add('profile-name'); 
+                mainDiv.classList.add('profile-container'); 
                 const bioPar:HTMLParagraphElement = document.createElement('p'); 
-                bioPar.classList.add('bio'); 
+                bioPar.classList.add('profile-bio'); 
                 bioPar.innerText = allUsers[key].bio;
-                mainDiv.appendChild(bioPar); 
+                smallBox.appendChild(bioPar); 
+                //mainDiv.appendChild(bioPar); 
                 const hideDiv:HTMLDivElement = document.querySelector('.profile-container'); 
                 hideDiv.style.display = 'none'; 
                 const hideWrapper:HTMLDivElement = document.querySelector('.user-wrapper');
