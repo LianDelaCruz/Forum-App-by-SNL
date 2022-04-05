@@ -12,17 +12,17 @@
 
 <body>
     <div class="user-wrapper">
-        <form class="log-in-wrapper">
+        <form class="log-in-wrapper" autocomplete="off">
             <input type="text" name="username" placeholder="Username" id="log-in-name" required>
             <input type="password" name="password" placeholder="Password" id="log-in-pass" required>
             <button class="log-in-btn">LOGIN</button>
         </form>
-
+        <h4>New here? Well join us by creating an account!</h4>
         <div class="sign-up-wrapper">
             <input type="text" name="username" placeholder="Username" id="sign-up-name" required>
             <input type="text" name="password" placeholder="Password" id="sign-up-pass" required>
             <textarea type="text" name="bio" placeholder="Tell us about yourself!" id="sign-up-bio" required></textarea>
-            <p>Please choose one of these profile images for your profile before hitting the sign up-button!</p>
+            <p id="profile-desc">PLEASE MAKE YOUR PROFILE COLORFUL BY CHOOSING ONE OF THE IMAGES BELOW BEFORE HITTING THE SIGNUP-BUTTON</p>
             <button id="pic-1"><img id="img-1" src="img/DogePanda.png" value="img/DogePanda.png"></button>
             <button id="pic-2"><img id="img-2" src="img/HoneyBunny.png"></button>
             <button id="pic-3"><img id="img-3" src="img/Papill.png"></button>

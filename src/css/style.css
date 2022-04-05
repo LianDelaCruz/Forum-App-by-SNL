@@ -50,12 +50,37 @@ img {
 /* Styling for login-page */
 
 .log-in-wrapper {
-    border: 1px solid black;
+    border: 2px solid black;
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+#log-in-name, #log-in-pass {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+h4 {
+    text-align: center;
 }
 
 .sign-up-wrapper {
-    border: 1px solid black;
+    border: 2px solid hotpink;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#profile-desc {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+}
+
+.sign-up-btn {
+    margin-left: 0.5rem;
 }
 
 /* Profile - page */ 
