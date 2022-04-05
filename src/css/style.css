@@ -17,10 +17,29 @@
     padding: 50px;
 }
 
-.msg-container {
-    background-color: rgb(38, 71, 109);
+.msg-container{
+    background-color: azure;
 }
 
+.msg-user{
+    background-color: brown;
+}
+
+.msg-content {
+    background-color: cornflowerblue;
+}
+
+.delbtn {
+    background-color: darksalmon;
+}
+
+.msg-input {
+    background-color: hotpink;
+}
+
+.msg-btn {
+    background-color: palegreen;
+}
 /* Image-size on signup page */
 
 img {

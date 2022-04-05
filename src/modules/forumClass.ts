@@ -15,12 +15,6 @@ export class Topic {
         public readonly id: string,
         public readonly messages: Message[],
     )
-    {
-        
-    }
+    {}
 }
 
-// export class Forum {
-//     constructor (public readonly topics: Topic[])
-//     {}
-// }
