@@ -26,10 +26,8 @@ logInBtn.addEventListener('click', (e) => {
 
 // When log in is successful
 function onLoginFinish(result: false | User | Profile) {
-    console.log(result)
     sessionStorage.setItem('username', `${inputUserName}`); 
-    let usrName = sessionStorage.getItem('username'); 
-    console.log(usrName); 
+    let usrName = sessionStorage.getItem('username');  
     if(result) {
         const profile = new Profile(result);
         console.log(profile);
@@ -40,8 +38,6 @@ function onLoginFinish(result: false | User | Profile) {
             const users = new AllUsers(uData); 
             console.log(users); 
             const a = document.createElement('a');
-            //a.setAttribute('href', '/forum.html?username=Sara');
-            // a.setAttribute('href', `/forum.html?username=${profile.uData.username}`);
             a.setAttribute('href', `/forum.html?username=${inputUserName}`);
             a.innerHTML = 'forum';
             document.body.appendChild(a);
