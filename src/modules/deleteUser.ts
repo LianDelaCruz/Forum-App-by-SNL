@@ -7,7 +7,6 @@ export function deleteAccount(): void {
     const deleteButton: HTMLButtonElement = document.createElement('button');
     buttonDiv.append(deleteButton);
     deleteButton.innerText = 'Delete';
-    document.body.innerHTML = '';
 
     deleteButton.addEventListener('click', (e) => {
         let deleteAccountBtn = confirm('Are you sure?');
