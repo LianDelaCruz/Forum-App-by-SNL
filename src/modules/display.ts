@@ -25,15 +25,16 @@ export function displayTopic(topic:Topic){
         const messageContainer = document.createElement('div');
         topicContainer.appendChild(messageContainer);
         messageContainer.className = 'msg-container';
-        // messageContainer.id = this.id;
 
         const messageUserElement:HTMLHeadingElement = document.createElement('h4');
         messageContainer.appendChild(messageUserElement);
         messageUserElement.innerText = messageAuthor;
+        messageUserElement.className = 'msg-user';
 
         const messageContentElement: HTMLParagraphElement = document.createElement('p');
         messageContainer.appendChild(messageContentElement);
         messageContentElement.innerText = content;
+        messageContentElement.className = 'msg-content';
 
         const shouldAddDeleteButton = messageAuthor === sessionStorage.getItem('username');
         if(shouldAddDeleteButton) {
@@ -50,12 +51,13 @@ export function displayTopic(topic:Topic){
     }
     const messageInputElement:HTMLInputElement= document.createElement('input');
     messageInputElement.placeholder = 'Write your message here!';
+    messageInputElement.className = 'msg-input';
     topicContainer.appendChild(messageInputElement);
 
     const messageButtonElement:HTMLButtonElement = document.createElement('button');
     messageButtonElement.textContent = 'SEND';
     topicContainer.appendChild(messageButtonElement);
-    messageButtonElement.className = 'messageButtonElement';
+    messageButtonElement.className = 'msg-btn';
     
 
     //this will refer to which topic is selected in the messageButtonElement(send button)
@@ -77,12 +79,6 @@ export function displayTopic(topic:Topic){
         newChat[newKey] = messageToAdd;
         update(dbReferences[topic.id], newChat);   
     })
-
-
-    //  if(userName != this.username){
-    //      deleteMsgBtn.style.display = 'none';
-    // }
-
 };
 
 

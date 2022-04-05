@@ -1,6 +1,6 @@
 // Initialize firebase app here
 import { initializeApp } from "firebase/app";
-import { getDatabase, update, onValue, ref, push, remove, get, child, equalTo } from "firebase/database";
+import { getDatabase, update, onValue, ref, push, get } from "firebase/database";
 import { Message, Topic } from "./forumClass";
 import { User } from "./userClass";
 
