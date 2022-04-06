@@ -71,8 +71,11 @@ img {
 
 .profile-container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    justify-content: space-between;
+    margin-top: 200px;
+    width: 1000px;
+    margin: auto;
+    padding: 30px;
 }
 
 .profile-name {
@@ -82,13 +85,14 @@ img {
 .profile-bio {
     font-family: Georgia, Times, 'Times New Roman', serif;
     font-size: 2em;
+    margin-right: 20px;
 }
 
 a:link {
     text-decoration: none;
     position: fixed;
     top: 50%; 
-    left: 3%; 
+    left: 40%; 
     font-size: 3em;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
