@@ -9,34 +9,34 @@ export class AllUsers {
     }
 
     private displayAllUsers(allUsers):void { /// displays all users from database, 
-        const usersContainer:HTMLDivElement = document.createElement('div'); 
-        document.body.append(usersContainer);
-        usersContainer.classList.add('allusers-links'); /// shows all users names
-        let mainDiv:HTMLDivElement = document.createElement('div');
-        document.body.append(mainDiv);
+        const allUsersContainer:HTMLDivElement = document.createElement('div'); 
+        document.body.append(allUsersContainer);
+        allUsersContainer.classList.add('allusers-links'); /// shows all users names
+        let allUsersDiv:HTMLDivElement = document.createElement('div');
+        document.body.append(allUsersDiv);
 
         for(const key in allUsers) { /// loops true allusers to display users 
-            let userParName:HTMLParagraphElement = document.createElement('p'); 
-            userParName.innerText = allUsers[key].username; 
+            let allUsersName:HTMLParagraphElement = document.createElement('p'); 
+            allUsersName.innerText = allUsers[key].username; 
 
             if (allUsers[key].username === inputUserName) { /// get back to my own profile 
-                userParName.innerText = 'Min profil'; 
+                allUsersName.innerText = 'Min profil'; 
             }
  
-            userParName.style.fontWeight = 'bold'; 
-            usersContainer.appendChild(userParName);
+            allUsersName.style.fontWeight = 'bold'; 
+            allUsersContainer.appendChild(allUsersName);
             
-            userParName.addEventListener('click', function(){ /// when pressed renders other profiles 
-                mainDiv.innerHTML = ''; 
-                const p:HTMLParagraphElement = document.createElement('p'); 
-                p.innerText = allUsers[key].username; 
-                mainDiv.appendChild(p); 
+            allUsersName.addEventListener('click', function(){ /// when pressed renders other profiles 
+                allUsersDiv.innerHTML = ''; 
+                const profileName:HTMLParagraphElement = document.createElement('p'); 
+                profileName.innerText = allUsers[key].username; 
+                allUsersDiv.appendChild(profileName); 
                 const smallBox = document.createElement('div');
                 smallBox.classList.add('profile-name-bio-div'); 
-                smallBox.appendChild(p);
-                mainDiv.appendChild(smallBox); 
-                p.classList.add('profile-name'); 
-                mainDiv.classList.add('profile-container'); 
+                smallBox.appendChild(profileName);
+                allUsersDiv.appendChild(smallBox); 
+                profileName.classList.add('profile-name'); 
+                allUsersDiv.classList.add('profile-container'); 
                 const bioPar:HTMLParagraphElement = document.createElement('p'); 
                 bioPar.classList.add('profile-bio'); 
                 bioPar.innerText = allUsers[key].bio;
@@ -49,7 +49,7 @@ export class AllUsers {
                 const stringImg: string = `${allUsers[key].img}`;
                 const imgUrl = new URL(stringImg, import.meta.url);
                 img.src = imgUrl.href;
-                mainDiv.appendChild(img);
+                allUsersDiv.appendChild(img);
             })
 
         }
