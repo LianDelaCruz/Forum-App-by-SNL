@@ -39,7 +39,7 @@ function onLoginFinish(result: false | User | Profile) {
             const users = new AllUsers(uData);
             console.log(users);
             const a = document.createElement('a');
-            a.setAttribute('href', `/forum.html?username=${inputUserName}`);
+            a.setAttribute('href', `./forum.html?username=${inputUserName}`);
             a.innerHTML = 'forum';
             document.body.appendChild(a);
 
