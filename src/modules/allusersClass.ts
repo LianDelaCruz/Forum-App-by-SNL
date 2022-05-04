@@ -26,12 +26,12 @@ export class AllUsers {
             allUsersName.style.fontWeight = 'bold'; 
             allUsersContainer.appendChild(allUsersName);
             
-            allUsersName.addEventListener('click', function(){ /// when pressed renders other profiles 
+            allUsersName.addEventListener('click', function():void{ /// when pressed renders other profiles 
                 allUsersDiv.innerHTML = ''; 
                 const profileName:HTMLParagraphElement = document.createElement('p'); 
                 profileName.innerText = allUsers[key].username; 
                 allUsersDiv.appendChild(profileName); 
-                const smallBox = document.createElement('div');
+                const smallBox:HTMLDivElement = document.createElement('div');
                 smallBox.classList.add('profile-name-bio-div'); 
                 smallBox.appendChild(profileName);
                 allUsersDiv.appendChild(smallBox); 

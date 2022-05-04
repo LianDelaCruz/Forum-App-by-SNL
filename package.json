@@ -28,6 +28,6 @@
     "Chrome>95"
   ],
   "dependencies": {
-    "firebase": "^9.6.10"
+    "firebase": "^9.7.0"
   }
 }
