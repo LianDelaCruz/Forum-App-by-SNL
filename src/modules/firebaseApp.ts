@@ -84,9 +84,9 @@ export const allUsers = ref(db, '/SNLApp/User/');
 //Login existing user
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
-        const userData = snapshot.val();
+        const userData:any = snapshot.val();
         console.log(logIn);
-        let result = false;
+        let result:boolean = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
                 result = userData[key]; /// Object sent to callback function when result is true
@@ -100,11 +100,11 @@ export function logIn(username, password, callback): void {
 //Create new user
 const createUserBtn: HTMLButtonElement = document.querySelector(".sign-up-btn");
 export let users: User[] = [];
-let imgChosen = 'none';
+let imgChosen:string = 'none';
 
 export function createNewUser(): void {
     onValue(dbUser, snapshot => {
-        const newUserData = snapshot.val();
+        const newUserData:any = snapshot.val();
         users = [];
 
         for (const key in newUserData) {
@@ -141,7 +141,7 @@ export function createNewUser(): void {
     })
 
     // When user clicks sign up-button info is sent and stored in database
-    createUserBtn.addEventListener('click', (e) => {
+    createUserBtn.addEventListener('click', (e):void => {
         const newUsername: HTMLInputElement = document.querySelector("#sign-up-name");
         const newPassword: HTMLInputElement = document.querySelector("#sign-up-pass");
         const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
@@ -155,8 +155,8 @@ export function createNewUser(): void {
         }
 
         get(dbUser).then((snapshot) => {
-            const data = snapshot.val();
-            let addUser = true;
+            const data:any = snapshot.val();
+            let addUser:boolean = true;
 
             for (const key in data) {
                 if (data[key].username == newUsername.value) {

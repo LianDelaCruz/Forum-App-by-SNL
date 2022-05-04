@@ -18,7 +18,7 @@ export let inputUserName: string;
 let inputPassword: string;
 
 // Button for login
-logInBtn.addEventListener('click', (e) => {
+logInBtn.addEventListener('click', (e):void => {
     e.preventDefault();
     inputUserName = logInUser.value;
     inputPassword = logInPassword.value;
@@ -26,7 +26,7 @@ logInBtn.addEventListener('click', (e) => {
 })
 
 // When log in is successful
-function onLoginFinish(result: false | User | Profile) {
+function onLoginFinish(result: false | User | Profile):void {
     sessionStorage.setItem('username', `${inputUserName}`);
     let usrName = sessionStorage.getItem('username');
     if (result) {
@@ -34,11 +34,11 @@ function onLoginFinish(result: false | User | Profile) {
         console.log(profile);
         sessionStorage.setItem('username', inputUserName)
         onValue(allUsers, snapshot => {
-            const uData = snapshot.val();
+            const uData:any = snapshot.val();
             console.log(uData);
-            const users = new AllUsers(uData);
+            const users:any = new AllUsers(uData);
             console.log(users);
-            const a = document.createElement('a');
+            const a:HTMLAnchorElement = document.createElement('a');
             a.setAttribute('href', `./forum.html?username=${inputUserName}`);
             a.innerHTML = 'forum';
             document.body.appendChild(a);

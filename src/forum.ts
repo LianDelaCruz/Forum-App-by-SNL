@@ -9,17 +9,17 @@ const deleteMsgBtn: HTMLButtonElement = document.createElement ('button');
 export let userName: string = sessionStorage.getItem('username');
 console.log(userName)
 
-beerBtn.addEventListener('click',e => {
+beerBtn.addEventListener('click',(e):void => {
     e.preventDefault();
    getBeerInDb(displayTopic)
 });
 
-foodBtn.addEventListener('click', e => {
+foodBtn.addEventListener('click', (e):void => {
     e.preventDefault();
     getFoodInDb(displayTopic);
 });
 
-wineBtn.addEventListener('click', e => {
+wineBtn.addEventListener('click', (e):void => {
     e.preventDefault();
     getWineInDb(displayTopic);
 })

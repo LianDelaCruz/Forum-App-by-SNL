@@ -20,7 +20,7 @@ export function deleteAccount(): void {
                 console.log(user);
 
                 if (sessionStorage.getItem('username') == users[i].username) {
-                    const deleteMyUser = ref(db, '/SNLApp/User/' + users[i].id);
+                    const deleteMyUser:any = ref(db, '/SNLApp/User/' + users[i].id);
                     sessionStorage.clear();
                     remove(deleteMyUser);
                     location.href = '/index.html';
