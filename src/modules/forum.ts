@@ -1,6 +1,6 @@
 
-import { getBeerInDb, getFoodInDb, getWineInDb} from "./modules/firebaseApp";
-import { displayTopic } from "./modules/display";
+import { getBeerInDb, getFoodInDb, getWineInDb} from "./firebaseApp";
+import { displayTopic } from "./display";
 
 const beerBtn:HTMLButtonElement = document.querySelector('#beer-btn');
 const foodBtn:HTMLButtonElement = document.querySelector('#food-btn');

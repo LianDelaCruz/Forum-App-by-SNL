@@ -2,7 +2,7 @@
 import { Message, Topic } from "./forumClass";
 import { dbFoodForum, dbBeerForum, dbWineForum, db } from "./firebaseApp";
 import { update, push, remove, ref } from "firebase/database";
-import { userName } from "../forum";
+import { userName } from "./forum";
 
 // This is where we will create elements that will appear on our website
 
