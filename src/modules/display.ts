@@ -1,6 +1,6 @@
 
 import { Message, Topic } from "./forumClass";
-import { dbFoodForum, dbBeerForum, dbWineForum, db } from "./firebaseApp";
+import { dbFoodForum, dbBeerForum, dbWineForum, db, dbReferenceMap } from "./firebaseApp";
 import { update, push, remove, ref } from "firebase/database";
 import { userName } from "./forum";
 
@@ -58,15 +58,7 @@ export function displayTopic(topic:Topic){
     messageButtonElement.textContent = 'SEND';
     topicContainer.appendChild(messageButtonElement);
     messageButtonElement.className = 'msg-btn';
-    
-
-    //this will refer to which topic is selected in the messageButtonElement(send button)
-    const dbReferences:any = {
-        'beer': dbBeerForum,
-        'wine': dbWineForum,
-        'food': dbFoodForum,
-    }
-
+   
     messageButtonElement.addEventListener('click', e => {
         messageInputElement;
         e.preventDefault();
@@ -74,10 +66,10 @@ export function displayTopic(topic:Topic){
             username:userName,
             message: messageInputElement.value
         }
-        const newKey:string = push(dbReferences[topic.id]).key;
+        const newKey:string = push(dbReferenceMap[topic.id]).key;
         const newChat = {};
         newChat[newKey] = messageToAdd;
-        update(dbReferences[topic.id], newChat);   
+        update(dbReferenceMap[topic.id], newChat);   
     })
 };
 

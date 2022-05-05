@@ -25,55 +25,29 @@ export const dbBeerForum = ref(db, '/SNLApp/Forum/beer/');
 export const dbFoodForum = ref(db, '/SNLApp/Forum/food/');
 export const dbWineForum = ref(db, '/SNLApp/Forum/wine/');
 
+export const dbReferenceMap:any = {
+    'beer': dbBeerForum,
+    'wine': dbWineForum,
+    'food': dbFoodForum,
+}
 
-export function getBeerInDb(callback: (topic: Topic) => void) {
-    onValue(dbBeerForum, snapshot => {
+export function getForumFromDB(topicName:string, callback: (topic: Topic) => void) {
+    const forumDbRef = dbReferenceMap[topicName]
+
+    onValue(forumDbRef, snapshot => {
 
         const messagesData = snapshot.val();
-        const beerMessages = [];
+        const messages = [];
 
         for (const key in messagesData) {
             const message = new Message(
                 key,
                 messagesData[key].username,
                 messagesData[key].message)
-            beerMessages.push(message)
+            messages.push(message)
         }
-        const beerForum = new Topic("beer", beerMessages);
-        callback(beerForum);
-    })
-};
-export function getFoodInDb(callback: (topic: Topic) => void) {
-    onValue(dbFoodForum, snapshot => {
-        const messagesData = snapshot.val();
-        const foodMessages = [];
-
-        for (const key in messagesData) {
-            const message = new Message(
-                key,
-                messagesData[key].username,
-                messagesData[key].message)
-            foodMessages.push(message)
-        }
-        const foodForum = new Topic("food", foodMessages);
-        callback(foodForum);
-    })
-};
-
-export function getWineInDb(callback: (topic: Topic) => void) {
-    onValue(dbWineForum, snapshot => {
-        const messagesData = snapshot.val();
-        const wineMessages = [];
-
-        for (const key in messagesData) {
-            const message = new Message(
-                key,
-                messagesData[key].username,
-                messagesData[key].message)
-            wineMessages.push(message)
-        }
-        const wineForum = new Topic("wine", wineMessages);//construct the class with data from database
-        callback(wineForum); //call callback with the Topic-class
+        const forum = new Topic(topicName, messages);
+        callback(forum);
     })
 };
 
@@ -85,7 +59,6 @@ export const allUsers = ref(db, '/SNLApp/User/');
 export function logIn(username, password, callback): void {
     onValue(dbUser, snapshot => {
         const userData:any = snapshot.val();
-        console.log(logIn);
         let result:boolean = false;
         for (const key in userData) {
             if (userData[key].username == username && userData[key].password == password) {
@@ -147,7 +120,7 @@ export function createNewUser(): void {
         const newBio: HTMLTextAreaElement = document.querySelector("#sign-up-bio");
         e.preventDefault();
 
-        const addNewUser = {
+        const addNewUser:any = {
             username: newUsername.value,
             password: newPassword.value,
             bio: newBio.value,
